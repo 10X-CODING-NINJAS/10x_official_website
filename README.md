@@ -1,4 +1,8 @@
-# React + Vite
+# 10x_official_website
+
+This repository contains the CN 10x website project (`cn-10x-website`) built with React and Vite.
+
+## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
