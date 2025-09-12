@@ -24,7 +24,7 @@ const Board = () => {
           {/* Left frame and text */}
           <div className="flex flex-col items-center mt-25">
             <img
-              src="/images/realframe.png"
+              src="/images/Vansh ECEO.png"
               alt="Frame Left"
               className="w-[300px] max-w-full h-auto"
               draggable="false"
@@ -56,8 +56,9 @@ const Board = () => {
               draggable="false"
               aria-hidden="true"
             />
+
             <img
-              src="/images/realframe.png"
+              src="/images/Rafae CEO.png"
               alt="Frame Center"
               className="w-[300px] max-w-full h-auto relative z-20"
               draggable="false"
@@ -74,7 +75,7 @@ const Board = () => {
           {/* Right frame and text */}
           <div className="flex flex-col items-center mt-25">
             <img
-              src="/images/realframe.png"
+              src="/images/Hemant CTO.png"
               alt="Frame Right"
               className="w-[300px] max-w-full h-auto"
               draggable="false"
@@ -99,7 +100,7 @@ const Board = () => {
           {/* Far left frame and text */}
           <div className="flex flex-col items-center">
             <img
-              src="/images/realframe.png"
+              src="/images/Atharv CMO.png"
               alt="Frame Far Left"
               className="w-[300px] max-w-full h-auto"
               draggable="false"
@@ -114,7 +115,7 @@ const Board = () => {
           {/* Middle frame and text */}
           <div className="flex flex-col items-center mt-25">
             <img
-              src="/images/realframe.png"
+              src="/images/Ashmit CCO.png"
               alt="Frame Below The Board"
               className="w-[300px] max-w-full h-auto"
               draggable="false"
@@ -131,7 +132,7 @@ const Board = () => {
           {/* Far right frame and text */}
           <div className="flex flex-col items-center">
             <img
-              src="/images/realframe.png"
+              src="/images/Hetav COO.png"
               alt="Frame Far Right"
               className="w-[300px] max-w-full h-auto"
               draggable="false"
