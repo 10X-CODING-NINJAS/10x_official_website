@@ -1,0 +1,143 @@
+/* Global scaling & uniform container helpers */
+:root{
+  --page-scale: 0.8; /* global scale factor */
+  --page-max-width: 1440px;
+  --page-horizontal-padding: 1.25rem; /* 20px */
+}
+
+
+html, body, #root {
+  background: #000;
+  min-height: 100vh;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+html { scroll-behavior: smooth; }
+
+/* Safer global scaling strategy:
+   Instead of forcing every div (which breaks many layouts), use a single wrapper.
+   Apply .global-scale to a top container you want to shrink.
+*/
+.global-scale {
+  /* Compensate for scale so visual width = viewport width */
+  --_scale: var(--page-scale);
+  --_inv: calc(1 / var(--_scale));
+  width: calc(100% * var(--_inv));
+  transform: scale(var(--_scale));
+  transform-origin: top left;
+  /* Center after expanding width */
+  margin-left: calc((100% - 100% * var(--_inv)) / 2);
+  margin-right: calc((100% - 100% * var(--_inv)) / 2);
+}
+
+/* Constrained width utility */
+.uniform-container {
+  width: 100%;
+  max-width: var(--page-max-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--page-horizontal-padding);
+  padding-right: var(--page-horizontal-padding);
+  box-sizing: border-box;
+}
+
+/* Full width fluid container (replaces uniform when max width not desired) */
+.fluid-container {
+  width: 100%;
+  margin: 0;
+  padding-left: var(--page-horizontal-padding);
+  padding-right: var(--page-horizontal-padding);
+  box-sizing: border-box;
+}
+
+/* Reusable page scale utility (75%) */
+.page-scale {
+  transform: scale(0.75);
+  transform-origin: top center;
+}
+
+/* Footer specific scale to ensure it fits within 100vh without vertical scroll */
+.page-scale-footer {
+  transform: scale(0.7);
+  transform-origin: top center;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* (Legacy) full-page scaling (now unused) */
+.app-scale-wrapper { /* deprecated: prefer .scaled-inner inside .scaled-outer */
+  transform: scale(var(--page-scale));
+  transform-origin: top center;
+  width: 100%;
+  min-height: calc(100vh / var(--page-scale));
+}
+
+/* Optional helper to compensate for scaling when you need fixed overlays */
+.no-scale-layer {
+  transform: scale(calc(1 / var(--page-scale)));
+  transform-origin: top center;
+}
+
+/* New inner scaling model */
+.scaled-outer {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.scaled-inner {
+  transform: scale(var(--page-scale));
+  transform-origin: top center;
+  width: 100%;
+}
+
+.scaled-inner > .uniform-container {
+  max-width: 1400px; /* after 0.8 scale ~1120px visual */
+}
+
+/* Footer full-bleed: stretch wider than viewport (e.g., design flare) */
+.footer-full-bleed {
+  position: relative;
+}
+.footer-full-bleed::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 140vw; /* extend beyond */
+  height: 100%;
+  transform: translateX(-50%);
+  background: #000; /* base color */
+  z-index: -1;
+}
+
+/* Footer inner full width wrapper */
+.footer-inner-full {
+  width: 140vw; /* match pseudo-element */
+  max-width: 140vw;
+  margin-left: calc(-20vw); /* center 140vw inside 100vw */
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Footer ninja isolated sizing */
+.footer-ninja-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(260px, 40vw, 880px);
+  height: clamp(180px, 28vw, 600px);
+}
+.footer-ninja-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
