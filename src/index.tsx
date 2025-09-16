@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { ScrollToHash } from "./lib/ScrollToHash";
 import { Footerpage } from "./screens/Footerpage/Footerpage";
-import Board from "./screens/Team/Board";
+import Board from "./screens/Team/board";
 import Home from "./screens/Home";
 import { MobileDomain } from "./screens/Domains/screens/MobileDomain/MobileDomain";
 import Technical from "./screens/Domains/screens/Technical/Technical";
