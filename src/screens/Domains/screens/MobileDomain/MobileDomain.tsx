@@ -7,7 +7,7 @@ export const MobileDomain = (): JSX.Element => {
   const navItems = [
     { label: "Home", href: "/#" },
     { label: "Domains", href: "/#domains" },
-    { label: "Teams", href: "/board" },
+    { label: "Teams", href: "/#board" },
   ];
   const domainCards = [
     {
