@@ -463,7 +463,7 @@ const Associates = () => {
                       }}
                     />
                     <img
-                      src="/images/harshit.png"
+                      src="./images/Harshit.png"
                       alt="Frame"
                       className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
                     />
