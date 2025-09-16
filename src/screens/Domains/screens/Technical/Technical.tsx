@@ -140,8 +140,13 @@ export const Technical = (): JSX.Element => {
           {/* Domain cards grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-6 lg:gap-8 xl:gap-12 place-items-center">
             {domainCards.map((card) => (
-              <div key={card.title} className="w-full max-w-sm md:max-w-xs lg:max-w-sm">
-                <Card className="relative w-full h-80 md:h-72 lg:h-80 xl:h-96 bg-transparent border-none overflow-hidden group hover:scale-105 transition-all duration-300 cursor-pointer">
+              <div key={card.title} className="w-full max-w-xs md:max-w-[220px] lg:max-w-[260px]">
+                {/* Title moved outside and above the card */}
+                <h3 style={{ fontFamily: "'Bruno Ace', cursive" }} className="text-white text-lg md:text-base lg:text-xl xl:text-2xl font-normal tracking-tight text-center whitespace-nowrap mb-3 [text-shadow:0_0_15px_rgba(255,82,0,1),0_0_30px_rgba(255,82,0,0.8),0_0_45px_rgba(255,82,0,0.6)]">
+                  {card.title}
+                </h3>
+                
+                <Card className="relative w-full h-64 md:h-60 lg:h-64 xl:h-72 bg-transparent border-none overflow-hidden group hover:scale-105 transition-all duration-300 cursor-pointer">
                   <CardContent className="p-0 h-full relative">
                     {/* Background frame - Rectangle SVG */}
                     <img
@@ -151,17 +156,10 @@ export const Technical = (): JSX.Element => {
                       onError={() => console.log('Rectangle image failed to load:', card.rectangle)}
                     />
                     
-                    {/* Title */}
-                    <div className="absolute top-6 md:top-4 lg:top-6 left-1/2 transform -translate-x-1/2 z-20">
-                      <h3 className="font-['Bruno_Ace'] text-white text-lg md:text-base lg:text-xl xl:text-3xl font-normal tracking-tight text-center whitespace-nowrap [text-shadow:0_0_15px_rgba(255,82,0,1),0_0_30px_rgba(255,82,0,0.8),0_0_45px_rgba(255,82,0,0.6)]">
-                        {card.title}
-                      </h3>
-                    </div>
-                    
                     {/* Main image */}
-                    <div className="absolute inset-0 flex items-center justify-center pt-16 md:pt-12 lg:pt-16 xl:pt-20 pb-6 px-6 z-10">
+                    <div className="absolute inset-0 flex items-center justify-center pt-4 md:pt-4 lg:pt-4 xl:pt-6 pb-4 px-4 z-10">
                       <img
-                        className="max-w-[65%] max-h-[65%] md:max-w-[70%] md:max-h-[70%] lg:max-w-[65%] lg:max-h-[65%] object-contain transition-transform duration-300 group-hover:scale-110"
+                        className="max-w-[70%] max-h-[70%] md:max-w-[75%] md:max-h-[75%] lg:max-w-[70%] lg:max-h-[70%] object-contain transition-transform duration-300 group-hover:scale-110"
                         alt={card.imageAlt}
                         src={card.image}
                         onError={() => console.log('Main image failed to load:', card.image)}

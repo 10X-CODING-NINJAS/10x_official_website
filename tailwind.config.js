@@ -1,4 +1,11 @@
 module.exports = {
+  theme: {
+    extend: {
+      fontFamily: {
+        bruno: ['Bruno Ace', 'cursive'],
+      },
+    },
+  },
   content: [
     "./src/**/*.{html,js,ts,jsx,tsx}",
     "app/**/*.{ts,tsx}",

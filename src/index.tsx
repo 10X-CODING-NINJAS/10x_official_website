@@ -7,7 +7,7 @@ import Board from "./screens/Team/Board";
 import Home from "./screens/Home";
 import { MobileDomain } from "./screens/Domains/screens/MobileDomain/MobileDomain";
 import Technical from "./screens/Domains/screens/Technical/Technical";
-
+import "./global.css"; 
 
 
 // Layout that includes shared footer for the marketing/landing pages only

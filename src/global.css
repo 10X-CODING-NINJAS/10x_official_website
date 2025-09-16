@@ -3,6 +3,7 @@
   --page-scale: 0.8; /* global scale factor */
   --page-max-width: 1440px;
   --page-horizontal-padding: 1.25rem; /* 20px */
+  --font-bruno: 'Bruno Ace', cursive;
 }
 
 
@@ -140,4 +141,32 @@ html { scroll-behavior: smooth; }
   width: 100%;
   height: 100%;
   object-fit: contain;
+}
+
+/* Bruno Ace font declaration */
+@font-face {
+  font-family: 'Bruno Ace';
+  src: url('/fonts/bruno-ace/BrunoAce-Regular.woff2') format('woff2'),
+       url('/fonts/bruno-ace/BrunoAce-Regular.woff') format('woff'),
+       url('/fonts/bruno-ace/BrunoAce-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Then use it with your class */
+.font-bruno {
+  font-family: 'Bruno Ace', cursive;
+}
+
+
+
+/* Ensure no horizontal overflow */
+html, body {
+  width:100%;
+  min-height:100%;
+  background:#000;
+  color:#fff;
+  overflow-x:hidden;
+  overflow-y:auto;
 }
