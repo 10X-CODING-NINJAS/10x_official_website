@@ -1,11 +1,65 @@
-import React from "react";
+import React, { useState } from "react";
+import { Button } from "../Domains/components/ui/button";
 
 import Heads from "../Team/Heads";
 import Associates from "../Team/Associates";
 
+const navItems = [
+  { label: "Home", href: "/#" },
+  { label: "Domains", href: "/#domains" },
+  { label: "Teams", href: "/board" },
+];
+
 const Board = () => {
+  const [active, setActive] = useState("Teams");
+
   return (
-    <div className="relative min-h-screen w-screen bg-black overflow-x-hidden m-0 p-0 z-0">
+    <div className="relative w-full min-h-[100dvh] bg-black">
+      {/* NAVBAR */}
+      <header className="fixed top-0 left-0 w-full z-50 bg-black/70 backdrop-blur-md border-b border-white/5">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 py-3 flex items-center justify-center">
+          <div className="hidden lg:block relative">
+            <div className="absolute inset-x-0 -top-4 -bottom-4 pointer-events-none">
+              <img
+                src="/Title/Rectangle 5047.svg"
+                alt=""
+                className="absolute inset-x-0 mx-auto top-4 h-[110px] w-full max-w-[880px] opacity-90"
+              />
+              <img
+                src="/Title/Rectangle 5048.svg"
+                alt=""
+                className="absolute inset-x-0 mx-auto top-3 h-[128px] w-full max-w-[890px]"
+              />
+            </div>
+            <nav className="relative flex gap-[64px] px-8 py-4 justify-center">
+              {navItems.map((item, i) => {
+                const isActive = active === item.label;
+                return (
+                  <Button
+                    key={item.label}
+                    asChild
+                    variant={isActive ? "default" : "outline"}
+                    onClick={() => setActive(item.label)}
+                    className={`h-[38px] px-5 rounded-[40px] text-[18px] font-semibold tracking-[-0.5px]
+                      [font-family:'Montserrat',Helvetica] transition-all
+                      ${
+                        isActive
+                          ? "bg-[#4c1900] text-white border-none shadow"
+                          : "bg-transparent text-white border-[2.5px] border-[#4c1900] hover:bg-[#4c1900]/15"
+                      }
+                      ${i === 1 ? "w-[150px]" : "w-[120px]"}`}
+                  >
+                    <a href={item.href}>{item.label}</a>
+                  </Button>
+                );
+              })}
+            </nav>
+          </div>
+        </div>
+      </header>
+
+      <div className="h-[150px] lg:h-[160px]" />
+
       {/* Background overlay */}
       <img
         src="/images/background.png"
@@ -59,7 +113,7 @@ const Board = () => {
               draggable="false"
               aria-hidden="true"
             />
-      
+
             <img
               src="/images/Rafae CEO.png"
               alt="Frame Center"
@@ -164,6 +218,5 @@ const Board = () => {
     </div>
   );
 };
-
 
 export default Board;
