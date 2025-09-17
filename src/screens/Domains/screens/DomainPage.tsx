@@ -21,11 +21,9 @@ function DomainPage() {
         
         {/* Domains Logo */}
         <div className="mb-12 animate-fade-in">
-        <div className="mb-12 animate-fade-in">
           <img 
             src="./Domain/Domains.png" 
             alt="DOMAINS" 
-            className="h-12 md:h-14 lg:h-16 w-auto filter drop-shadow-2xl"
             className="h-12 md:h-14 lg:h-16 w-auto filter drop-shadow-2xl"
           />
         </div>
