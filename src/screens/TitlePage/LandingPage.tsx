@@ -3,9 +3,9 @@ import React from "react";
 const navigationItems = [
   { label: "Home", href: "/#" },
   { label: "Domains", href: "/#domains" },
-  { label: "Teams", href: "/board" }, 
+  { label: "Teams", href: "/board" },
 ];
-// Clean version without navbar state
+
 export const LandingPage = (): JSX.Element => {
   return (
     <section
@@ -17,7 +17,23 @@ export const LandingPage = (): JSX.Element => {
     >
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+        {/*
+          Bubbles are created with div tags using absolute positioning,
+          and a mix of blur, rounded corners, and gradients to mimic the effect.
+        */}
         <div className="absolute w-[45vw] max-w-[420px] aspect-[1/1.1] top-1/3 left-[18%] -rotate-[27deg] rounded-[25%] blur-2xl bg-gradient-to-b from-[#ff801b30] to-[#994d1025]" />
+        
+        {/* Bubble 2 */}
+        <div className="absolute w-[35vw] max-w-[320px] aspect-[1/1.1] top-[40%] left-[80%] rotate-[15deg] rounded-[40%] blur-xl bg-gradient-to-b from-[#ff520020] to-[#994d1015]" />
+        
+        {/* Bubble 3 */}
+        <div className="absolute w-[25vw] max-w-[250px] aspect-[1/1.1] bottom-[5%] left-[5%] -rotate-[45deg] rounded-[50%] blur-lg bg-gradient-to-b from-[#ff801b20] to-[#994d1010]" />
+        
+        {/* Bubble 4 (adjusting for better distribution) */}
+        <div className="absolute w-[20vw] max-w-[180px] aspect-[1/1.1] top-[10%] right-[5%] rotate-[30deg] rounded-[30%] blur-lg bg-gradient-to-b from-[#ff520025] to-[#994d1020]" />
+        
+        {/* Bubble 5 (smaller bubble near the top) */}
+        <div className="absolute w-[15vw] max-w-[150px] aspect-[1/1.1] top-[5%] left-[50%] -rotate-[10deg] rounded-[60%] blur-md bg-gradient-to-b from-[#ff801b15] to-[#994d1010]" />
       </div>
 
       <div
@@ -54,6 +70,25 @@ export const LandingPage = (): JSX.Element => {
               Coding Ninjas 10X Club SRM is a community of builders and curious
               minds—learning, creating and shipping impact with technology.
             </p>
+            {/*
+              The Join Us button now has a simple orange border and uses the 'Bruno Ace' font.
+              - The `border` and `border-[#ff5200]` classes apply a solid 1px orange border.
+              - The `rounded-full` class gives it the pill shape.
+              - The `font-[Bruno Ace]` class (or an equivalent Tailwind class defined in your config)
+                is used to apply the custom font.
+              - The `href` is set to the provided Google Form URL.
+              - `target="_blank"` and `rel="noopener noreferrer"` are added for best practice
+                when linking to an external site.
+            */}
+            <a
+              href="https://forms.gle/XvnySkwbt8GgFfJW7"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-6 inline-block rounded-full border border-[#ff5200] px-6 py-2 text-sm text-white transition-all duration-300 hover:bg-[#ff5200] hover:text-white"
+              style={{ fontFamily: "'Bruno Ace', sans-serif" }}
+            >
+              Join Us
+            </a>
           </div>
         </div>
 

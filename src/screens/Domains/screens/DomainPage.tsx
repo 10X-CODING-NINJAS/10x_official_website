@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 // DomainPage (was App) acts as the landing selection screen for domains
 function DomainPage() {
   return (
-  <div id="domains" className="min-h-screen bg-black relative overflow-hidden">
+    <div id="domains" className="min-h-screen bg-black relative overflow-hidden">
       {/* Background Balls Overlay */}
       <div 
         className="absolute inset-0 z-0"
@@ -16,18 +16,18 @@ function DomainPage() {
       />
       
       {/* Main Content */}
-  <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-12 page-scale origin-top">
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 py-12 page-scale origin-top">
         {/* Domains Logo */}
-    <div className="mb-12 animate-fade-in">
+        <div className="mb-12 animate-fade-in">
           <img 
             src="./Domain/Domains.png" 
             alt="DOMAINS" 
-      className="h-12 md:h-14 lg:h-16 w-auto filter drop-shadow-2xl"
+            className="h-12 md:h-14 lg:h-16 w-auto filter drop-shadow-2xl"
           />
         </div>
         
         {/* Tech Images Container */}
-  <div className="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-6 max-w-5xl w-full">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-4 lg:gap-6 max-w-5xl w-full">
           {/* Left Tech Image with 3D tilt (image only) and flat overlay; whole frame clickable */}
           <div className="group relative w-full flex-1 [perspective:1000px]">
             <Link to="/technical" className="block relative">
@@ -40,7 +40,10 @@ function DomainPage() {
                 <div className="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </div>
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <span className="text-white text-xl md:text-2xl lg:text-3xl font-bold tracking-wide">TECHNICAL</span>
+                {/* Apply custom font here */}
+                <span className="text-white text-xl md:text-2xl lg:text-3xl tracking-wide" style={{ fontFamily: "'Bruno Ace', sans-serif" }}>
+                  TECHNICAL
+                </span>
               </div>
             </Link>
           </div>
@@ -57,7 +60,10 @@ function DomainPage() {
                 <div className="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </div>
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                <span className="text-white text-xl md:text-2xl lg:text-3xl font-bold tracking-wide">NON-TECHNICAL</span>
+                {/* Apply custom font here */}
+                <span className="text-white text-xl md:text-2xl lg:text-3xl tracking-wide" style={{ fontFamily: "'Bruno Ace', sans-serif" }}>
+                  NON-TECHNICAL
+                </span>
               </div>
             </Link>
           </div>
