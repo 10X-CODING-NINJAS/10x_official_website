@@ -34,13 +34,13 @@ const AboutPage: React.FC = () => {
       }}>
         {/* Left Side - Group Photo (2/3 width on desktop, full width on mobile) */}
         <div style={{
-          width: windowWidth <= 768 ? '100%' : '66.666%',
+          width: windowWidth <= 768 ? '100%' : '66.6666%',
           height: windowWidth <= 768 ? '50vh' : '100vh',
           position: 'relative',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: windowWidth <= 768 ? '1rem' : '1.5rem'
+          padding: windowWidth <= 768 ? '1rem' : '3.5rem'
         }}>
           <div style={{ position: 'relative' }}>
             {/* Wave Border */}

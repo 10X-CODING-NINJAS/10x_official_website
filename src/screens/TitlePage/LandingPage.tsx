@@ -3,9 +3,8 @@ import React from "react";
 const navigationItems = [
   { label: "Home", href: "/#" },
   { label: "Domains", href: "/#domains" },
-  { label: "Teams", href: "/board" },
+  { label: "Teams", href: "/board" }, 
 ];
-
 // Clean version without navbar state
 export const LandingPage = (): JSX.Element => {
   return (

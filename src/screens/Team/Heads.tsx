@@ -3,9 +3,9 @@ import React from "react";
 const headsData = [
   { name: "Jayesh Jain", role: "AI-ML" },
   { name: "Pranav Tiwari", role: "AI-ML" },
-  { name: "Jay Jariwala", role: "App-Dev" },
   { name: "Nishtha Goyal", role: "Web-Dev" },
   { name: "Ashneet Jha", role: "Web-Dev" },
+  { name: "Jay Jariwala", role: "App-Dev" },
   { name: "Brindha B", role: "Corporate" },
   { name: "Shreyas B", role: "Corporate" },
   { name: "Allan Roy", role: "Corporate" },
@@ -93,7 +93,7 @@ const Heads = () => {
                   ) : rowIdx === 0 && idx === 2 ? (
                     <>
                       <img
-                        src="/images/Jay.png"
+                        src="/images/Nishtha.png"
                         alt="Pranav Tiwari"
                         className="absolute z-10 object-cover"
                         style={{
@@ -107,7 +107,7 @@ const Heads = () => {
                         }}
                       />
                       <img
-                        src="/images/Jay.png"
+                        src="/images/Nishtha.png"
                         alt="Frame"
                         className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
                       />
@@ -115,7 +115,7 @@ const Heads = () => {
                   ) : rowIdx === 0 && idx === 3 ? (
                     <>
                       <img
-                        src="/images/Nishtha.png"
+                        src="/images/Ashneet.png"
                         alt="Pranav Tiwari"
                         className="absolute z-10 object-cover"
                         style={{
@@ -129,7 +129,7 @@ const Heads = () => {
                         }}
                       />
                       <img
-                        src="/images/Nishtha.png"
+                        src="/images/Ashneet.png"
                         alt="Frame"
                         className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
                       />
@@ -137,7 +137,7 @@ const Heads = () => {
                   ) : rowIdx === 1 && idx === 0 ? (
                     <>
                       <img
-                        src="/images/Ashneet.png"
+                        src="/images/Jay.png"
                         alt="Pranav Tiwari"
                         className="absolute z-10 object-cover"
                         style={{
@@ -151,7 +151,7 @@ const Heads = () => {
                         }}
                       />
                       <img
-                        src="/images/Ashneet.png"
+                        src="/images/Jay.png"
                         alt="Frame"
                         className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
                       />
