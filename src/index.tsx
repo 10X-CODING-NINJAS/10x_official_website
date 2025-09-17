@@ -9,7 +9,6 @@ import { MobileDomain } from "./screens/Domains/screens/MobileDomain/MobileDomai
 import Technical from "./screens/Domains/screens/Technical/Technical";
 import "./global.css"; 
 
-
 // Layout that includes shared footer for the marketing/landing pages only
 const MainLayout = () => (
   <>
@@ -28,6 +27,7 @@ createRoot(document.getElementById("app") as HTMLElement).render(
           <Route path="/" element={<Home />} />
           {/* Board could stay in marketing layout if you want footer */}
           <Route path="/board" element={<Board />} />
+          <Route path="/teams" element={<Board />} /> {/* <-- Added /teams route */}
         </Route>
 
         {/* Standalone domain deep-dive pages WITHOUT footer & about */}
