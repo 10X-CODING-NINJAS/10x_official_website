@@ -14,6 +14,8 @@ const navigationItems = [
 const Board: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [active, setActive] = useState("Teams");
+  // ✨ ADDED STATE FOR MOBILE MENU VISIBILITY
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     if (window.location.hash.includes("domains")) setActive("Domains");
@@ -116,6 +118,34 @@ const Board: React.FC = () => {
             </a>
           </nav>
         </div>
+
+        {/* Mobile Menu Dropdown Panel */}
+        {open && (
+          <div className="lg:hidden animate-fade-in-down px-3 pb-3">
+            <div className="p-3 rounded-2xl border border-white/10 bg-[#1a1a1a]/90 backdrop-blur-md flex flex-col gap-3 text-sm">
+              {navigationItems.map((item) => {
+                const isActive = active === item.label;
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => {
+                      setActive(item.label);
+                      setOpen(false);
+                    }}
+                    className={`w-full text-center py-2 rounded-full font-medium transition border ${
+                      isActive
+                        ? "bg-[#4c1900] border-[#4c1900] text-white"
+                        : "border-[#4c1900] text-white hover:bg-[#4c1900]/20"
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Spacer for fixed navbar */}
