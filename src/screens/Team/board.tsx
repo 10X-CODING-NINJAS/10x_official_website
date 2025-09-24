@@ -8,7 +8,7 @@ import Associates from "../Team/Associates";
 const navigationItems = [
   { label: "Home", href: "/#", active: false },
   { label: "Domains", href: "/#domains", active: false },
-  { label: "Teams", href: "/board", active: false },
+  { label: "Team", href: "/board", active: false },
 ];
 
 const Board: React.FC = () => {

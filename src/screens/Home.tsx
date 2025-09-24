@@ -9,7 +9,7 @@ import { Menu, X } from "lucide-react";
 const navigationItems = [
   { label: "Home", href: "/#", active: false },
   { label: "Domains", href: "/#domains", active: false },
-  { label: "Teams", href: "/board", active: false },
+  { label: "Team", href: "/board", active: false },
 ];
 
 const Home: React.FC = () => {
