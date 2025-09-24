@@ -26,7 +26,7 @@ const Home: React.FC = () => {
     <>
       {/* Fixed Navbar */}
       <header className="fixed top-0 left-0 w-full z-50 bg-black/70 backdrop-blur-md border-b border-white/5">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 py-3 flex items-center justify-center">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 py-3 flex items-center justify-end lg:justify-center"> {/* ✨ THIS LINE IS CHANGED */}
           <div className="hidden lg:block relative">
             <div className="absolute inset-x-0 -top-4 -bottom-4 pointer-events-none">
               <img
