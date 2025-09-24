@@ -12,12 +12,16 @@ const navItems = [
 
 const Board = () => {
   const [active, setActive] = useState("Teams");
+  // ✨ ADDED STATE FOR MOBILE MENU VISIBILITY
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="relative w-full min-h-[100dvh] bg-black">
       {/* NAVBAR */}
+      {/* ✨ THE ENTIRE HEADER BELOW IS UPDATED WITH THE MOBILE MENU CODE */}
       <header className="fixed top-0 left-0 w-full z-50 bg-black/70 backdrop-blur-md border-b border-white/5">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 py-3 flex items-center justify-center">
+        <div className="max-w-6xl mx-auto px-4 md:px-6 py-3 flex items-center justify-end lg:justify-center">
+          {/* Desktop Navbar (unchanged) */}
           <div className="hidden lg:block relative">
             <div className="absolute inset-x-0 -top-4 -bottom-4 pointer-events-none">
               <img
@@ -55,7 +59,46 @@ const Board = () => {
               })}
             </nav>
           </div>
+
+          {/* Mobile menu button (Hamburger Icon) */}
+          <button
+            onClick={() => setOpen((p) => !p)}
+            className="lg:hidden inline-flex flex-col justify-center gap-1.5 w-8 h-8 rounded-md border border-white/20 text-white"
+            aria-label="Toggle menu"
+          >
+            <span className={`h-0.5 w-5 bg-white transition ${open ? "translate-y-[6px] rotate-45" : ""}`} />
+            <span className={`h-0.5 w-5 bg-white transition ${open ? "opacity-0" : ""}`} />
+            <span className={`h-0.5 w-5 bg-white transition ${open ? "-translate-y-[6px] -rotate-45" : ""}`} />
+          </button>
         </div>
+
+        {/* Mobile Menu Dropdown Panel */}
+        {open && (
+          <div className="lg:hidden animate-fade-in-down px-3 pb-3">
+            <div className="p-3 rounded-2xl border border-white/10 bg-[#1a1a1a]/90 backdrop-blur-md flex flex-col gap-3 text-sm">
+              {navItems.map((item) => {
+                const isActive = active === item.label;
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    onClick={() => {
+                      setActive(item.label);
+                      setOpen(false);
+                    }}
+                    className={`w-full text-center py-2 rounded-full font-medium transition border ${
+                      isActive
+                        ? "bg-[#4c1900] border-[#4c1900] text-white"
+                        : "border-[#4c1900] text-white hover:bg-[#4c1900]/20"
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        )}
       </header>
 
       <div className="h-[150px] lg:h-[160px]" />
