@@ -105,7 +105,7 @@ const Home: React.FC = () => {
 
             {/* Join Us CTA in mobile menu */}
             <a
-              href="https://forms.gle/Ta6MVGCCDeSPBp9c8"
+              href="https://www.instagram.com/srm_cn/"
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setIsMobileMenuOpen(false)}
