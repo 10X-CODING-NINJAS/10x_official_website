@@ -33,12 +33,12 @@ const Board: React.FC = () => {
       <header className="fixed top-0 left-0 w-full z-50">
         {/* Background Rectangles */}
         <img
-          className="absolute top-[-10px] left-1/2 transform -translate-x-1/2 w-full max-w-[1094px] h-auto"
+          className="hidden md:block absolute top-[-10px] left-1/2 transform -translate-x-1/2 w-full max-w-[1094px] h-auto"
           alt="Rectangle"
           src="/Title/Rectangle 5047.svg"
         />
         <img
-          className="absolute top-[-11px] left-1/2 transform -translate-x-1/2 w-full max-w-[1102px] h-auto"
+          className="hidden md:block absolute top-[-11px] left-1/2 transform -translate-x-1/2 w-full max-w-[1102px] h-auto"
           alt="Rectangle"
           src="/Title/Rectangle 5048.svg"
         />
@@ -69,7 +69,7 @@ const Board: React.FC = () => {
         {/* Mobile Hamburger Button */}
         <button
           onClick={toggleMobileMenu}
-          className="md:hidden absolute top-[15px] left-8 z-50 flex items-center justify-center w-[45px] h-[45px] rounded-[50px] border-[3px] border-solid border-[#4c1900] bg-transparent transition-all duration-300 hover:bg-[#4c1900]"
+          className="md:hidden absolute top-[15px] right-8 z-50 flex items-center justify-center w-[45px] h-[45px] rounded-[50px] border-[3px] border-solid border-[#4c1900] bg-transparent transition-all duration-300 hover:bg-[#4c1900]"
         >
           {isMobileMenuOpen ? (
             <X className="w-6 h-6 text-white" />
