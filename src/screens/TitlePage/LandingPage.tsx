@@ -72,7 +72,7 @@ export const LandingPage = (): JSX.Element => {
               minds—learning, creating and shipping impact with technology.
             </p>
             <a
-              href=""
+              href="https://www.instagram.com/srm_cn/"
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 inline-block rounded-full border border-[#ff5200] px-6 py-3 text-base text-white transition-all duration-300 hover:bg-[#ff5200] hover:text-white"
