@@ -26,14 +26,55 @@ export const LandingPage = (): JSX.Element => {
         {/* Bubble 2 */}
         <div className="absolute w-[35vw] max-w-[320px] aspect-[1/1.1] top-[40%] left-[80%] rotate-[15deg] rounded-[40%] blur-xl bg-gradient-to-b from-[#ff520020] to-[#994d1015]" />
         
-        {/* Bubble 3 */}
-        <div className="absolute w-[25vw] max-w-[250px] aspect-[1/1.1] bottom-[5%] left-[5%] -rotate-[45deg] rounded-[50%] blur-lg bg-gradient-to-b from-[#ff801b20] to-[#994d1010]" />
+     
         
         {/* Bubble 4 (adjusting for better distribution) */}
         <div className="absolute w-[20vw] max-w-[180px] aspect-[1/1.1] top-[10%] right-[5%] rotate-[30deg] rounded-[30%] blur-lg bg-gradient-to-b from-[#ff520025] to-[#994d1020]" />
         
         {/* Bubble 5 (smaller bubble near the top) */}
         <div className="absolute w-[15vw] max-w-[150px] aspect-[1/1.1] top-[5%] left-[50%] -rotate-[10deg] rounded-[60%] blur-md bg-gradient-to-b from-[#ff801b15] to-[#994d1010]" />
+        
+        {/* Random bubble images */}
+        <img 
+          src="./Title/bubble.png" 
+          alt="bubble" 
+          className="absolute w-16 h-16 md:w-24 md:h-24 top-[12%] left-[8%] opacity-30 pointer-events-none animate-pulse"
+        />
+        <img 
+          src="./Title/bubble.png" 
+          alt="bubble" 
+          className="absolute w-20 h-20 md:w-28 md:h-28 bottom-[15%] right-[12%] opacity-25 pointer-events-none "
+        />
+        <img 
+          src="./Title/bubble.png" 
+          alt="bubble" 
+          className="absolute w-12 h-12 md:w-18 md:h-18 top-[45%] right-[25%] opacity-20 pointer-events-none"
+        />
+        <img 
+          src="./Title/bubble.png" 
+          alt="bubble" 
+          className="absolute w-14 h-14 md:w-20 md:h-20 bottom-[35%] left-[15%] opacity-35 pointer-events-none "
+        />
+        <img 
+          src="./Title/bubble.png" 
+          alt="bubble" 
+          className="absolute w-15 h-12 md:w-26 md:h-26 top-[30%] left-1/2 transform -translate-x-1/2 opacity-28 pointer-events-none "
+        />
+        <img 
+          src="./Title/bubble.png" 
+          alt="bubble" 
+          className="absolute w-10 h-10 md:w-16 md:h-16 top-[8%] right-[30%] opacity-25 pointer-events-none "
+        />
+        <img 
+          src="./Title/bubble.png" 
+          alt="bubble" 
+          className="absolute w-12 h-12 md:w-18 md:h-18 top-[18%] right-[15%] opacity-30 pointer-events-none"
+        />
+        <img 
+          src="./Title/bubble.png" 
+          alt="bubble" 
+          className="absolute w-8 h-8 md:w-14 md:h-14 top-[25%] right-[40%] opacity-20 pointer-events-none "
+        />
       </div>
 
       <div

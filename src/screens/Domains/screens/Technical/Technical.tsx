@@ -1,18 +1,27 @@
 import React, { useState, useEffect } from "react";
 import { Card, CardContent } from "../../components/ui/card";
 import { Button } from "../../components/ui/button";
+import { Footerpage } from "../../../Footerpage/Footerpage";
+import { Menu, X } from "lucide-react";
 
 export const Technical = (): JSX.Element => {
   const [active, setActive] = useState("Home");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  
   useEffect(() => {
     if (window.location.hash.includes("domains")) setActive("Domains");
     else setActive("Home");
   }, []);
+  
   const navItems = [
     { label: "Home", href: "/#" },
     { label: "Domains", href: "/#domains" },
     { label: "Teams", href: "/board" },
   ];
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen((prev) => !prev);
+  };
 
   const domainCards = [
     {
@@ -102,46 +111,94 @@ export const Technical = (): JSX.Element => {
 
   return (
     <div className="relative w-full min-h-[100dvh] bg-black overflow-hidden">
-      {/* NAVBAR (fixed) */}
-      <header className="fixed top-0 left-0 w-full z-50 bg-black/70 backdrop-blur-md border-b border-white/5">
-        <div className="max-w-6xl mx-auto px-4 md:px-6 py-3 flex items-center justify-center">
-          <div className="hidden lg:block relative">
-            <div className="absolute inset-x-0 -top-4 -bottom-4 pointer-events-none">
-              <img
-                src="/Title/Rectangle 5047.svg"
-                alt=""
-                className="absolute inset-x-0 mx-auto top-4 h-[110px] w-full max-w-[880px] opacity-90"
-              />
-              <img
-                src="/Title/Rectangle 5048.svg"
-                alt=""
-                className="absolute inset-x-0 mx-auto top-3 h-[128px] w-full max-w-[890px]"
-              />
-            </div>
-            <nav className="relative flex gap-[64px] px-8 py-4 justify-center">
-              {navItems.map((item, i) => {
-                const isActive = active === item.label;
-                return (
-                  <Button
-                    key={item.label}
-                    asChild
-                    variant={isActive ? "default" : "outline"}
-                    onClick={() => setActive(item.label)}
-                    className={`h-[38px] px-5 rounded-[40px] text-[18px] font-semibold tracking-[-0.5px]
-                      [font-family:'Montserrat',Helvetica] transition-all
-                      ${
-                        isActive
-                          ? "bg-[#4c1900] text-white border-none shadow"
-                          : "bg-transparent text-white border-[2.5px] border-[#4c1900] hover:bg-[#4c1900]/15"
-                      }
-                      ${i === 1 ? "w-[150px]" : "w-[120px]"}`}
-                  >
-                    <a href={item.href}>{item.label}</a>
-                  </Button>
-                );
-              })}
-            </nav>
-          </div>
+      {/* Navbar */}
+      <header className="fixed top-0 left-0 w-full z-50">
+        <img
+          className="absolute top-[-10px] left-1/2 transform -translate-x-1/2 w-full max-w-[1094px] h-auto"
+          alt="Rectangle"
+          src="./Title/Rectangle 5047.svg"
+        />
+
+        <img
+          className="absolute top-[-11px] left-1/2 transform -translate-x-1/2 w-full max-w-[1102px] h-auto"
+          alt="Rectangle"
+          src="./Title/Rectangle 5048.svg"
+        />
+
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex absolute top-[15px] left-1/2 transform -translate-x-1/2 gap-4 h-[45px]">
+          {navItems.map((item) => {
+            const isActive = active === item.label;
+            return (
+              <Button
+                key={item.label}
+                className={`flex h-[45px] items-center justify-center gap-2.5 rounded-[50px] border-[3px] border-solid border-[#4c1900] px-6 transition-all duration-300 hover:bg-[#4c1900] ${
+                  isActive ? "bg-black border-black" : "bg-transparent"
+                }`}
+              >
+                <a
+                  href={item.href}
+                  onClick={() => setActive(item.label)}
+                  className="relative w-fit [font-family:'Montserrat',Helvetica] font-semibold text-white text-[clamp(1rem,2vw,1.5rem)] tracking-[-0.72px] leading-[normal]"
+                >
+                  {item.label}
+                </a>
+              </Button>
+            );
+          })}
+        </nav>
+
+        {/* Mobile Hamburger Button */}
+        <button
+          onClick={toggleMobileMenu}
+          className="md:hidden absolute top-[15px] left-8 z-50 flex items-center justify-center w-[45px] h-[45px] rounded-[50px] border-[3px] border-solid border-[#4c1900] bg-transparent transition-all duration-300 hover:bg-[#4c1900]"
+        >
+          {isMobileMenuOpen ? (
+            <X className="w-6 h-6 text-white" />
+          ) : (
+            <Menu className="w-6 h-6 text-white" />
+          )}
+        </button>
+
+        {/* Mobile Navigation Menu */}
+        <div
+          className={`md:hidden fixed top-0 left-0 w-full h-screen bg-black/95 backdrop-blur-md z-40 transition-all duration-300 ${
+            isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+          }`}
+        >
+          <nav className="flex flex-col items-start justify-center h-full pl-8 gap-8">
+            {navItems.map((item) => {
+              const isActive = active === item.label;
+              return (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  onClick={() => {
+                    setActive(item.label);
+                    setIsMobileMenuOpen(false);
+                  }}
+                  className={`relative [font-family:'Montserrat',Helvetica] font-semibold text-white text-[1.5rem] tracking-[-0.72px] leading-[normal] transition-all duration-300 hover:text-[#ff5200] cursor-pointer ${
+                    isActive ? "text-[#ff5200]" : "text-white"
+                  }`}
+                >
+                  {item.label}
+                </a>
+              );
+            })}
+
+            {/* Join Us CTA in mobile menu */}
+            <a
+              href="https://forms.gle/Ta6MVGCCDeSPBp9c8"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="w-full"
+            >
+              <div className="w-full text-center py-2 rounded-full bg-gradient-to-br from-[#ff5300] to-[#ffbb9a] text-white font-semibold shadow hover:opacity-90 transition">
+                Join Us
+              </div>
+            </a>
+          </nav>
         </div>
       </header>
 
@@ -195,22 +252,37 @@ export const Technical = (): JSX.Element => {
       {/* Main content */}
       <div className="flex items-center justify-center min-h-screen px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-7xl">
+          {/* TECHNICAL title in the middle */}
+          <div className="flex justify-center mb-12">
+            <h1 
+              className="font-batman text-white text-4xl md:text-6xl lg:text-7xl xl:text-8xl tracking-wider"
+              style={{ 
+                textShadow: '0_0_15px_rgba(255,82,0,1),0_0_30px_rgba(255,82,0,0.8),0_0_45px_rgba(255,82,0,0.6)',
+                fontFamily: "'BatmanForeverAlternate', sans-serif"
+              }}
+            >
+              TECHNICAL
+            </h1>
+          </div>
+
           {/* Domain cards grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 md:gap-6 lg:gap-8 xl:gap-12 place-items-center">
-            {domainCards.map((card) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-4 lg:gap-6 xl:gap-8 place-items-center">
+            {domainCards.map((card, index) => (
               <div
                 key={card.title}
-                className="w-full max-w-xs md:max-w-[220px] lg:max-w-[260px]"
+                className={`w-full max-w-[280px] md:max-w-[180px] lg:max-w-[200px] ${
+                  index === 1 ? '-mt-8 md:-mt-12' : ''
+                }`}
               >
                 {/* Title moved outside and above the card */}
                 <h3
-                  style={{ fontFamily: "'Bruno Ace', cursive" }}
-                  className="text-white text-lg md:text-base lg:text-xl xl:text-2xl font-normal tracking-tight text-center whitespace-nowrap mb-3 [text-shadow:0_0_15px_rgba(255,82,0,1),0_0_30px_rgba(255,82,0,0.8),0_0_45px_rgba(255,82,0,0.6)]"
+                  style={{ fontFamily: "Montserrat" }}
+                  className="text-white text-base md:text-sm lg:text-base xl:text-lg font-normal tracking-tight text-center whitespace-nowrap mb-2"
                 >
                   {card.title}
                 </h3>
 
-                <Card className="relative w-full h-64 md:h-60 lg:h-64 xl:h-72 bg-transparent border-none overflow-hidden group hover:scale-105 transition-all duration-300 cursor-pointer">
+                <Card className="relative w-full h-48 md:h-44 lg:h-48 xl:h-52 bg-transparent border-none overflow-hidden group hover:scale-105 transition-all duration-300 cursor-pointer">
                   <CardContent className="p-0 h-full relative">
                     {/* Background frame - Rectangle SVG */}
                     <img
@@ -243,6 +315,9 @@ export const Technical = (): JSX.Element => {
           </div>
         </div>
       </div>
+      
+      {/* Footer */}
+      <Footerpage />
     </div>
   );
 };

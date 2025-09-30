@@ -32,13 +32,13 @@ function DomainPage() {
         <div className="flex flex-col lg:flex-row items-center justify-center gap-6 max-w-5xl w-full">
           
           {/* TECHNICAL Card */}
-          <div className="group relative w-[500px] h-[300px] [perspective:1000px]">
+          <div className="group relative w-[500px] h-[300px]">
             <Link to="/technical" className="block relative w-full h-full">
-              <div className="relative w-full h-full overflow-hidden shadow-xl transition-transform duration-500 ease-out [transform-style:preserve-3d] group-hover:[transform:rotateX(40deg)] border-2 border-transparent bg-black">
+              <div className="relative w-full h-full overflow-hidden shadow-xl transition-transform duration-500 ease-out group-hover:scale-110 border-2 border-transparent bg-black">
                 <img
                   src="./Domain/Tech overall.png"
                   alt="Technical"
-                  className="w-full h-full object-cover block"
+                  className="w-full h-full object-cover block transition-all duration-300 group-hover:blur-sm"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </div>
@@ -55,13 +55,13 @@ function DomainPage() {
           </div>
 
           {/* NON-TECHNICAL Card */}
-          <div className="group relative w-[500px] h-[300px] [perspective:1000px]">
+          <div className="group relative w-[500px] h-[300px]">
             <Link to="/mobile" className="block relative w-full h-full">
-              <div className="relative w-full h-full overflow-hidden shadow-xl transition-transform duration-500 ease-out [transform-style:preserve-3d] group-hover:[transform:rotateX(40deg)] border-2 border-transparent bg-black">
+              <div className="relative w-full h-full overflow-hidden shadow-xl transition-transform duration-500 ease-out group-hover:scale-110 border-2 border-transparent bg-black">
                 <img
                   src="./Domain/NonTech overall.png"
                   alt="Non-Technical"
-                  className="w-full h-full object-cover block"
+                  className="w-full h-full object-cover block transition-all duration-300 group-hover:blur-sm"
                 />
                 <div className="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
               </div>
