@@ -10,7 +10,7 @@ const headsData = [
   { name: "Shreyas B", role: "Corporate" },
   { name: "Allan Roy", role: "Corporate" },
   { name: "Archit Patre", role: "Creatives" },
-  { name: "Ananya Mahajan", role: "Creatives" },
+  { name: "Shrey Sharma", role: "Creatives" },
   { name: "Malvi Sood", role: "Editorial" },
   { name: "Jay Agrawal", role: "Editorial" },
   { name: "Devashree Hote", role: "Sponsorships" },
@@ -247,7 +247,7 @@ const Heads = () => {
                   ) : rowIdx === 2 && idx === 1 ? (
                     <>
                       <img
-                        src="/images/Ananya.png"
+                        src="/images/Shrey.png"
                         alt="Pranav Tiwari"
                         className="absolute z-10 object-cover"
                         style={{
@@ -261,7 +261,7 @@ const Heads = () => {
                         }}
                       />
                       <img
-                        src="/images/Ananya.png"
+                        src="/images/Shrey.png"
                         alt="Frame"
                         className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
                       />
