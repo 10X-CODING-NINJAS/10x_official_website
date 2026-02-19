@@ -13,8 +13,8 @@ const associatesData = [
   { name: "Vrisheeka Mulakala", role: "Creatives" },
   { name: "Himesh Sahoo", role: "Creatives" },
   { name: "Lakshya Agarwal", role: "Editorial" },
-  { name: "Harshit Kauntia", role: "Sponsorships" },
   { name: "Tumu Jaswanth", role: "Sponsorships" },
+  { name: "Harshit Kauntia", role: "Sponsorships" },
 ];
 
 const imageUrl = "/images/vikrant.png.jpg"; // Default placeholder image
@@ -27,7 +27,7 @@ const Associates = () => {
     associatesData.slice(0, 4),
     associatesData.slice(4, 8),
     associatesData.slice(8, 12),
-    associatesData.slice(12, 14), // 4th row (Harshit, Tumu)
+    associatesData.slice(12, 14), // 4th row (Tumu, Harshit)
   ];
 
   return (
@@ -160,7 +160,7 @@ const Associates = () => {
                   ) : rowIdx === 1 && idx === 1 ? (
                     <>
                       <img
-                        src={imageUrl}
+                        src="/images/Johan.png"
                         alt="Johan Joe Thomas"
                         className="absolute z-10 object-cover"
                         style={{
@@ -174,7 +174,7 @@ const Associates = () => {
                         }}
                       />
                       <img
-                        src={frameUrl}
+                        src="/images/Johan.png"
                         alt="Frame"
                         className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
                       />
@@ -270,7 +270,7 @@ const Associates = () => {
                   ) : rowIdx === 2 && idx === 2 ? (
                     <>
                       <img
-                        src={imageUrl}
+                        src="/images/Himesh.png"
                         alt="Himesh Sahoo"
                         className="absolute z-10 object-cover"
                         style={{
@@ -284,7 +284,7 @@ const Associates = () => {
                         }}
                       />
                       <img
-                        src={frameUrl}
+                        src="/images/Himesh.png"
                         alt="Frame"
                         className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
                       />
@@ -339,34 +339,12 @@ const Associates = () => {
           </div>
         ))}
 
-        {/* 4th row (Harshit, Tumu) */}
+        {/* 4th row (Tumu, Harshit) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:gap-10 gap-y-8 sm:gap-y-10 mb-6 sm:mb-8 w-full max-w-6xl">
           {rows[3].map((associate, idx) => (
             <div key={idx} className="flex flex-col items-center">
               <div className="relative w-[180px] h-[220px] md:w-[220px] md:h-[260px] lg:w-[240px] lg:h-[280px] flex items-center justify-center">
                 {idx === 0 ? (
-                  <>
-                    <img
-                      src="/images/harshit.png"
-                      alt="Harshit Kauntia"
-                      className="absolute z-10 object-cover"
-                      style={{
-                        top: "15%",
-                        left: "15%",
-                        width: "70%",
-                        height: "70%",
-                        borderRadius: "24px",
-                        clipPath:
-                          "polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%)",
-                      }}
-                    />
-                    <img
-                      src="/images/harshit.png"
-                      alt="Frame"
-                      className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
-                    />
-                  </>
-                ) : idx === 1 ? (
                   <>
                     <img
                       src="/images/Tumu.png"
@@ -384,6 +362,28 @@ const Associates = () => {
                     />
                     <img
                       src="/images/Tumu.png"
+                      alt="Frame"
+                      className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
+                    />
+                  </>
+                ) : idx === 1 ? (
+                  <>
+                    <img
+                      src="/images/Harshit.png"
+                      alt="Harshit Kauntia"
+                      className="absolute z-10 object-cover"
+                      style={{
+                        top: "15%",
+                        left: "15%",
+                        width: "70%",
+                        height: "70%",
+                        borderRadius: "24px",
+                        clipPath:
+                          "polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%)",
+                      }}
+                    />
+                    <img
+                      src="/images/Harshit.png"
                       alt="Frame"
                       className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
                     />
@@ -420,3 +420,4 @@ const Associates = () => {
 };
 
 export default Associates;
+

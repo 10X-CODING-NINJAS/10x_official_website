@@ -6,6 +6,7 @@ const headsData = [
   { name: "Nishtha Goyal", role: "Web-Dev" },
   { name: "Ashneet Jha", role: "Web-Dev" },
   { name: "Jay Jariwala", role: "App-Dev" },
+  { name: "Anushka Agarwal", role: "App-Dev" },
   { name: "Brindha B", role: "Corporate" },
   { name: "Shreyas B", role: "Corporate" },
   { name: "Allan Roy", role: "Corporate" },
@@ -25,7 +26,7 @@ const Heads = () => {
     headsData.slice(0, 4),
     headsData.slice(4, 8),
     headsData.slice(8, 12),
-    headsData.slice(12, 14), // Last row: Devashree + Krish
+    headsData.slice(12, 15), // Last row: Malvi + Jay + Devashree + Krish
   ];
 
   return (
@@ -138,7 +139,7 @@ const Heads = () => {
                     <>
                       <img
                         src="/images/Jay.png"
-                        alt="Pranav Tiwari"
+                        alt="Jay Jariwala"
                         className="absolute z-10 object-cover"
                         style={{
                           top: "15%",
@@ -159,8 +160,8 @@ const Heads = () => {
                   ) : rowIdx === 1 && idx === 1 ? (
                     <>
                       <img
-                        src="/images/Brindha.png"
-                        alt="Pranav Tiwari"
+                        src="/images/Anushka.png"
+                        alt="Anushka Agarwal"
                         className="absolute z-10 object-cover"
                         style={{
                           top: "15%",
@@ -173,7 +174,7 @@ const Heads = () => {
                         }}
                       />
                       <img
-                        src="/images/Brindha.png"
+                        src="/images/Anushka.png"
                         alt="Frame"
                         className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
                       />
@@ -181,8 +182,8 @@ const Heads = () => {
                   ) : rowIdx === 1 && idx === 2 ? (
                     <>
                       <img
-                        src="/images/Shreyas.png"
-                        alt="Pranav Tiwari"
+                        src="/images/Brindha.png"
+                        alt="Brindha B"
                         className="absolute z-10 object-cover"
                         style={{
                           top: "15%",
@@ -195,7 +196,7 @@ const Heads = () => {
                         }}
                       />
                       <img
-                        src="/images/Shreyas.png"
+                        src="/images/Brindha.png"
                         alt="Frame"
                         className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
                       />
@@ -203,8 +204,8 @@ const Heads = () => {
                   ) : rowIdx === 1 && idx === 3 ? (
                     <>
                       <img
-                        src="/images/Allan.png"
-                        alt="Pranav Tiwari"
+                        src="/images/Shreyas.png"
+                        alt="Shreyas B"
                         className="absolute z-10 object-cover"
                         style={{
                           top: "15%",
@@ -217,7 +218,7 @@ const Heads = () => {
                         }}
                       />
                       <img
-                        src="/images/Allan.png"
+                        src="/images/Shreyas.png"
                         alt="Frame"
                         className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
                       />
@@ -225,8 +226,8 @@ const Heads = () => {
                   ) : rowIdx === 2 && idx === 0 ? (
                     <>
                       <img
-                        src="/images/Archit.png"
-                        alt="Pranav Tiwari"
+                        src="/images/Allan.png"
+                        alt="Allan Roy"
                         className="absolute z-10 object-cover"
                         style={{
                           top: "15%",
@@ -239,7 +240,7 @@ const Heads = () => {
                         }}
                       />
                       <img
-                        src="/images/Archit.png"
+                        src="/images/Allan.png"
                         alt="Frame"
                         className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
                       />
@@ -247,8 +248,8 @@ const Heads = () => {
                   ) : rowIdx === 2 && idx === 1 ? (
                     <>
                       <img
-                        src="/images/Shrey.png"
-                        alt="Pranav Tiwari"
+                        src="/images/Archit.png"
+                        alt="Archit Patre"
                         className="absolute z-10 object-cover"
                         style={{
                           top: "15%",
@@ -261,7 +262,7 @@ const Heads = () => {
                         }}
                       />
                       <img
-                        src="/images/Shrey.png"
+                        src="/images/Archit.png"
                         alt="Frame"
                         className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
                       />
@@ -269,8 +270,8 @@ const Heads = () => {
                   ) : rowIdx === 2 && idx === 2 ? (
                     <>
                       <img
-                        src="/images/Malvi.png"
-                        alt="Pranav Tiwari"
+                        src="/images/Shrey.png"
+                        alt="Shrey Sharma"
                         className="absolute z-10 object-cover"
                         style={{
                           top: "15%",
@@ -283,7 +284,7 @@ const Heads = () => {
                         }}
                       />
                       <img
-                        src="/images/Malvi.png"
+                        src="/images/Shrey.png"
                         alt="Frame"
                         className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
                       />
@@ -291,8 +292,8 @@ const Heads = () => {
                   ) : rowIdx === 2 && idx === 3 ? (
                     <>
                       <img
-                        src="/images/JayAG.png"
-                        alt="Pranav Tiwari"
+                        src="/images/Malvi.png"
+                        alt="Malvi Sood"
                         className="absolute z-10 object-cover"
                         style={{
                           top: "15%",
@@ -305,7 +306,7 @@ const Heads = () => {
                         }}
                       />
                       <img
-                        src="/images/JayAG.png"
+                        src="/images/Malvi.png"
                         alt="Frame"
                         className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
                       />
@@ -347,12 +348,34 @@ const Heads = () => {
           </div>
         ))}
 
-        {/* Last row: Devashree + Krish */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 md:gap-10 gap-y-8 sm:gap-y-10 mb-6 sm:mb-8 w-full max-w-6xl">
+        {/* Last row: Malvi + Jay + Devashree + Krish */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 gap-y-8 sm:gap-y-10 mb-6 sm:mb-8 w-full max-w-6xl">
           {rows[3].map((head, idx) => (
             <div key={idx} className="flex flex-col items-center">
               <div className="relative w-[180px] h-[220px] md:w-[220px] md:h-[260px] lg:w-[240px] lg:h-[280px] flex items-center justify-center">
                 {idx === 0 ? (
+                  <>
+                    <img
+                      src="/images/JayAG.png"
+                      alt="Jay Agrawal"
+                      className="absolute z-10 object-cover"
+                      style={{
+                        top: "15%",
+                        left: "15%",
+                        width: "70%",
+                        height: "70%",
+                        borderRadius: "24px",
+                        clipPath:
+                          "polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%)",
+                      }}
+                    />
+                    <img
+                      src="/images/JayAG.png"
+                      alt="Frame"
+                      className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
+                    />
+                  </>
+                ) : idx === 1 ? (
                   <>
                     <img
                       src="/images/Devashree.png"
@@ -374,7 +397,7 @@ const Heads = () => {
                       className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
                     />
                   </>
-                ) : idx === 1 ? (
+                ) : idx === 2 ? (
                   <>
                     <img
                       src="/images/Krish.png"
