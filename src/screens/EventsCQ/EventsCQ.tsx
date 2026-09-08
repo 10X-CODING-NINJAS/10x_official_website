@@ -9,9 +9,9 @@ interface Event {
 }
 
 const events: Event[] = [
-  { id: 1, name: "CODE QUEST 4.0", img: "./EventsPage/cq4.0.png" },
-  { id: 2, name: "CODE QUEST 3.0", img: "./EventsPage/CQ3.0.png" },
-  { id: 3, name: "CODE-A-DROID 3.0", img: "./EventsPage/cad3.0.png" },
+  { id: 1, name: "CAMPUS QUEST 4.0", img: "./EventsPage/cq4.0.png" },
+  { id: 2, name: "CAMPUS QUEST 3.0", img: "./EventsPage/CQ3.0.png" },
+  { id: 3, name: "CTRL ALT DELETE 3.0", img: "./EventsPage/cad3.0.png" },
 ];
 
 const EventsSection: React.FC = () => {
