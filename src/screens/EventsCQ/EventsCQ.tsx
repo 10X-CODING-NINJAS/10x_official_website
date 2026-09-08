@@ -1,127 +1,168 @@
-import { useState, useEffect } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import React, { useRef, useEffect, useState } from "react";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
+import { TextReveal } from "../../components/TextReveal";
 
-// Define a type for a single event object
 interface Event {
   id: number;
+  name: string;
   img: string;
 }
 
-// Define the type for the events array
 const events: Event[] = [
-  { id: 1, img: "./EventsPage/CQ3.0.png" },
-  { id: 2, img: "./EventsPage/cq4.0.png" },
-  { id: 3, img: "./EventsPage/cad3.0.png" },
+  { id: 1, name: "CODE QUEST 4.0", img: "./EventsPage/cq4.0.png" },
+  { id: 2, name: "CODE QUEST 3.0", img: "./EventsPage/CQ3.0.png" },
+  { id: 3, name: "CODE-A-DROID 3.0", img: "./EventsPage/cad3.0.png" },
 ];
 
-// Type the component as a React Functional Component (React.FC)
-const EventsCarousel: React.FC = () => {
-  // Specify the type for the state variable
-  const [current, setCurrent] = useState<number>(0);
+const EventsSection: React.FC = () => {
+  const sectionRef = useScrollReveal();
+  const containerRef = useRef<HTMLElement>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
 
-  const prevSlide = (): void => {
-    setCurrent((prev) => (prev === 0 ? events.length - 1 : prev - 1));
-  };
+  // References for the Lerp animation loop
+  const targetProgress = useRef(0);
+  const currentProgress = useRef(0);
 
-  const nextSlide = (): void => {
-    setCurrent((prev) => (prev === events.length - 1 ? 0 : prev + 1));
-  };
-
+  // 1. Listen to scroll events and ONLY update the target progress (no React state updates)
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 3000);
-    return () => clearInterval(interval);
-    // nextSlide is a dependency, but adding it can cause re-renders.
-    // In this case, it's stable, so we can disable the lint rule.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const handleScroll = () => {
+      if (!containerRef.current) return;
+      const { top, height } = containerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      const scrollableDistance = height - windowHeight;
+      let progress = -top / scrollableDistance;
+      
+      // Clamp between 0 and 1
+      targetProgress.current = Math.max(0, Math.min(1, progress));
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // 2. The Render Loop: Smoothly interpolates the current progress to the target
+  useEffect(() => {
+    let rafId: number;
+
+    const render = () => {
+      // Lerp (Linear Interpolation). The 0.08 is the smoothness factor. Lower = smoother/slower.
+      currentProgress.current += (targetProgress.current - currentProgress.current) * 0.08;
+
+      if (carouselRef.current) {
+        const scrollWidth = carouselRef.current.scrollWidth;
+        const clientWidth = window.innerWidth;
+        const maxTranslate = Math.max(0, scrollWidth - clientWidth + 40);
+
+        carouselRef.current.style.transform = `translateX(-${currentProgress.current * maxTranslate}px)`;
+      }
+
+      if (progressRef.current) {
+        progressRef.current.style.width = `${Math.max(5, currentProgress.current * 100)}%`;
+      }
+
+      rafId = requestAnimationFrame(render);
+    };
+
+    rafId = requestAnimationFrame(render);
+    return () => cancelAnimationFrame(rafId);
   }, []);
 
   return (
-  <div className="w-screen min-h-screen bg-black text-white text-center overflow-hidden relative flex flex-col items-center page-scale origin-top">
-      <div className="mt-5 text-center">
-        <img src="./EventsPage/event_title.png" alt="Events Title" className="w-[550px] max-w-[90vw] mb-2.5 mx-auto" />
-      </div>
+    <section
+      id="events"
+      ref={containerRef}
+      className="relative w-full"
+      style={{ background: "var(--bg-primary)", height: "300vh" }}
+    >
+      {/* Sticky wrapper that locks the view and holds the content */}
+      <div 
+        ref={sectionRef} 
+        className="sticky top-0 w-full h-[100dvh] flex flex-col justify-center overflow-hidden"
+      >
+        <div className="container-main mb-10 lg:mb-14">
+          {/* Section Marker removed */}
 
-      <div className="relative w-full h-[80vh] max-h-[600px] flex items-center justify-center overflow-hidden">
-        <button
-          onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 bg-transparent border-none text-orange-500 cursor-pointer z-10 text-3xl p-0 transition-transform duration-200 hover:scale-110"
-        >
-          <ChevronLeft size={28} />
-        </button>
-
-        <div className="relative w-full flex justify-center items-center" style={{minHeight: '180px'}}>
-          {events.map((event, index) => {
-            const isActive = index === current;
-            const isPrev = index === (current - 1 + events.length) % events.length;
-            const isNext = index === (current + 1) % events.length;
-
-            let style: React.CSSProperties = {
-              position: 'absolute',
-              opacity: 0,
-              transform: 'scale(0.8)',
-              transition: 'all 0.5s ease',
-              maxWidth: 300,
-              zIndex: 1,
-            };
-            if (isActive) {
-              style.opacity = 1;
-              style.transform = 'scale(1.1)';
-              style.zIndex = 3;
-              style.boxShadow = '0 0 25px rgba(255, 140, 0, 0.8)';
-            } else if (isPrev) {
-              style.opacity = 0.6;
-              style.transform = 'translateX(-220px) scale(0.9)';
-              style.zIndex = 2;
-            } else if (isNext) {
-              style.opacity = 0.6;
-              style.transform = 'translateX(220px) scale(0.9)';
-              style.zIndex = 2;
-            }
-            return (
-              <div key={event.id} style={style} className="">
-                <img
-                  src={event.img}
-                  alt={`Event ${index + 1}`}
-                  className="w-full h-auto rounded-2xl shadow-lg"
-                />
-              </div>
-            );
-          })}
+          {/* Heading */}
+          <div className="reveal">
+            <h2
+              className="heading-display"
+              style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}
+            >
+              <TextReveal text="WHAT HAPPENS" delay={0.1} />
+              <br />
+              <span style={{ color: "var(--accent)" }}>
+                <TextReveal text="HERE." delay={0.4} />
+              </span>
+            </h2>
+          </div>
         </div>
 
-        <button
-          onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 bg-transparent border-none text-orange-500 cursor-pointer z-10 text-3xl p-0 transition-transform duration-200 hover:scale-110"
-        >
-          <ChevronRight size={28} />
-        </button>
+        {/* Horizontal Scroll Track */}
+        <div className="relative w-full reveal-scale reveal-delay-1 pl-[var(--container-padding)] pb-4">
+          <div
+            ref={carouselRef}
+            className="flex gap-6 sm:gap-8 flex-nowrap w-max pr-[var(--container-padding)]"
+            style={{ willChange: "transform" }}
+          >
+            {/* The Events */}
+            {[...events, ...events, ...events].map((event, i) => (
+              <div
+                key={`${event.id}-${i}`}
+                className="shrink-0 w-[82vw] sm:w-[380px] md:w-[440px] group flex flex-col"
+              >
+                {/* Event Poster Card */}
+                <div
+                  className="relative overflow-hidden transition-all duration-500 mb-6 aspect-[4/5] bg-[var(--bg-surface)] rounded-xl border border-[var(--border)] group-hover:border-[var(--accent)] group-hover:shadow-[0_0_30px_rgba(255,82,0,0.25)]"
+                >
+                  <img
+                    src={event.img}
+                    alt={event.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-60 group-hover:opacity-30 transition-opacity duration-300" />
+                </div>
 
-        {/* Bubbles */}
-        <div
-          className="pointer-events-none absolute rounded-full z-0"
-          style={{
-            width: 200,
-            height: 200,
-            top: 50,
-            left: 50,
-            background: 'radial-gradient(circle, rgba(255,140,0,0.4), transparent)',
-          }}
-        ></div>
-        <div
-          className="pointer-events-none absolute rounded-full z-0"
-          style={{
-            width: 200,
-            height: 200,
-            bottom: 50,
-            right: 50,
-            background: 'radial-gradient(circle, rgba(255,140,0,0.4), transparent)',
-          }}
-        ></div>
+                {/* Event Title and Details */}
+                <div className="flex items-center gap-4">
+                  <span
+                    className="font-batman text-2xl sm:text-3xl leading-none"
+                    style={{ color: "var(--text-tertiary)" }}
+                  >
+                    {String((i % events.length) + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3
+                      className="font-batman text-lg sm:text-xl tracking-wider mb-1 transition-colors duration-300 group-hover:text-[var(--accent)] text-white"
+                    >
+                      {event.name}
+                    </h3>
+                    <span className="label-upper text-[0.65rem] text-[var(--accent)]">
+                      Past Event
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Scroll Progress Bar Indicator */}
+          <div className="container-main mt-8">
+            <div className="w-full h-1 bg-[var(--bg-surface)] rounded-full overflow-hidden border border-[var(--border)]">
+              <div
+                ref={progressRef}
+                className="h-full bg-[var(--accent)] rounded-full"
+                style={{ width: "5%", willChange: "width" }}
+              />
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default EventsCarousel;
+export default EventsSection;

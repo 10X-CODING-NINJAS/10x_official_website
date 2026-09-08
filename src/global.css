@@ -1,208 +1,365 @@
-/* Global scaling & uniform container helpers */
-:root{
-  --page-scale: 0.8; /* global scale factor */
-  --page-max-width: 1440px;
-  --page-horizontal-padding: 1.25rem; /* 20px */
-  --font-bruno: 'Bruno Ace', cursive;
+/* ================================================================
+   10X CLUB SRM — DESIGN SYSTEM
+   ================================================================ */
+
+/* --- Color Tokens --- */
+:root {
+  --bg-primary: #0A0A0A;
+  --bg-surface: #111111;
+  --bg-surface-2: #1A1A1A;
+  --bg-surface-3: #222222;
+
+  --text-primary: #F0ECE5;
+  --text-secondary: #9A958D;
+  --text-tertiary: #5C5750;
+
+  --accent: #ff5200;
+  --accent-hover: #ff6b2b;
+  --accent-muted: rgba(255, 82, 0, 0.12);
+  --accent-glow: rgba(255, 82, 0, 0.25);
+
+  --border: #252525;
+  --border-hover: #3a3a3a;
+
+  /* Typography scale */
+  --font-display: 'BatmanForeverAlternate', 'Montserrat', Helvetica, Arial, sans-serif;
+  --font-body: 'Montserrat', Helvetica, Arial, sans-serif;
+
+  /* Spacing */
+  --section-padding: clamp(80px, 10vw, 160px);
+  --container-max: 1200px;
+  --container-padding: clamp(20px, 5vw, 48px);
 }
 
-
-html, body, #root {
-  background: #000;
-  min-height: 100vh;
-  width: 100%;
+/* --- Reset & Base --- */
+*, *::before, *::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: #fff;
 }
 
-html { scroll-behavior: smooth; }
-
-/* Safer global scaling strategy:
-   Instead of forcing every div (which breaks many layouts), use a single wrapper.
-   Apply .global-scale to a top container you want to shrink.
-*/
-.global-scale {
-  /* Compensate for scale so visual width = viewport width */
-  --_scale: var(--page-scale);
-  --_inv: calc(1 / var(--_scale));
-  width: calc(100% * var(--_inv));
-  transform: scale(var(--_scale));
-  transform-origin: top left;
-  /* Center after expanding width */
-  margin-left: calc((100% - 100% * var(--_inv)) / 2);
-  margin-right: calc((100% - 100% * var(--_inv)) / 2);
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
-/* Constrained width utility */
-.uniform-container {
-  width: 100%;
-  max-width: var(--page-max-width);
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--page-horizontal-padding);
-  padding-right: var(--page-horizontal-padding);
-  box-sizing: border-box;
-}
-
-/* Full width fluid container (replaces uniform when max width not desired) */
-.fluid-container {
-  width: 100%;
-  margin: 0;
-  padding-left: var(--page-horizontal-padding);
-  padding-right: var(--page-horizontal-padding);
-  box-sizing: border-box;
-}
-
-/* Footer specific scale to ensure it fits within 100vh without vertical scroll */
-.page-scale-footer {
-  transform: scale(0.7);
-  transform-origin: top center;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-/* (Legacy) full-page scaling (now unused) */
-.app-scale-wrapper { /* deprecated: prefer .scaled-inner inside .scaled-outer */
-  transform: scale(var(--page-scale));
-  transform-origin: top center;
-  width: 100%;
-  min-height: calc(100vh / var(--page-scale));
-}
-
-/* Optional helper to compensate for scaling when you need fixed overlays */
-.no-scale-layer {
-  transform: scale(calc(1 / var(--page-scale)));
-  transform-origin: top center;
-}
-
-/* New inner scaling model */
-.scaled-outer {
-  position: relative;
-  width: 100%;
-  min-height: 100vh;
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-.scaled-inner {
-  transform: scale(var(--page-scale));
-  transform-origin: top center;
+#app, #root {
+  min-height: 100dvh;
   width: 100%;
-}
-
-.scaled-inner > .uniform-container {
-  max-width: 1400px; /* after 0.8 scale ~1120px visual */
-}
-
-/* Footer full-bleed: stretch wider than viewport (e.g., design flare) */
-.footer-full-bleed {
-  position: relative;
-}
-.footer-full-bleed::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 140vw; /* extend beyond */
-  height: 100%;
-  transform: translateX(-50%);
-  background: #000; /* base color */
-  z-index: -1;
-}
-
-/* Footer inner full width wrapper */
-.footer-inner-full {
-  width: 140vw; 
-  max-width: 140vw;
-  margin-left: calc(-20vw);
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
-.footer-ninja-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: clamp(260px, 40vw, 880px);
-  height: clamp(180px, 28vw, 600px);
-}
-.footer-ninja-wrapper img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
+/* --- Tailwind Directives --- */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* --- Font Faces --- */
 @font-face {
-  font-family: 'Bruno Ace';
-  src: url('/fonts/bruno-ace/BrunoAce-Regular.woff2') format('woff2'),
-       url('/fonts/bruno-ace/BrunoAce-Regular.woff') format('woff'),
-       url('/fonts/bruno-ace/BrunoAce-Regular.ttf') format('truetype');
+  font-family: 'BatmanForeverAlternate';
+  src: url('/Fonts/batmfa__.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
-
-.font-bruno {
-  font-family: 'Bruno Ace', cursive;
+@font-face {
+  font-family: 'Bruno Ace';
+  src: url('/Fonts/BrunoAce-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
-
-html, body {
-  width:100%;
-  min-height:100%;
-  background:#000;
-  color:#fff;
-  overflow-x:hidden;
-  overflow-y:auto;
-}
-
-/* Ensure full-viewport usage with no unintended scaling */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-html, body {
-  margin: 0;
-  padding: 0;
+/* --- Container Utilities --- */
+.container-main {
   width: 100%;
-  min-height: 100%;
-  background: #000;
-  color: #fff;
-  overflow-x: hidden;
-  -webkit-text-size-adjust: 100%;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding-left: var(--container-padding);
+  padding-right: var(--container-padding);
 }
 
-body, #root {
-  min-height: 100dvh; /* more reliable than 100vh on mobile */
+.section-spacing {
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
 }
 
-#root {
-  width: 100%;
+/* --- Section Markers (01 — IDENTITY, 02 — ABOUT, etc.) --- */
+.section-marker {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  margin-bottom: 3rem;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-/* If you previously added any scaling here, remove it */
-.page-scale {
-  transform: none !important;
-  transform-origin: center center;
+.section-marker::after {
+  content: '';
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--border);
 }
 
-/* Remove accidental zoom if present (delete any zoom: or scale transforms elsewhere) */
-* {
-  box-sizing: border-box;
+/* --- Typography Utilities --- */
+.heading-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--text-primary);
 }
 
-/* Optional: hide scrollbar but keep vertical scroll */
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+.heading-section {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-primary);
 }
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+
+.label-upper {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.body-text {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+
+.body-text strong,
+.body-text b {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* --- Button Styles --- */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+  border-radius: 2px;
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.4s var(--ease-out-expo), border-color 0.4s var(--ease-out-expo);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s var(--ease-out-expo);
+  z-index: 0;
+}
+
+.btn-primary:hover {
+  color: var(--bg-primary);
+}
+
+.btn-primary:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.btn-primary > * {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+/* --- Motion Design System --- */
+:root {
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-cubic: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.175, 0.885, 0.32, 1.1);
+  --ease-ui: cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+/* --- Core Reveal Classes --- */
+.reveal, .reveal-up, .reveal-clip, .reveal-blur, .reveal-scale {
+  opacity: 0;
+  will-change: transform, opacity, filter, clip-path;
+}
+
+/* 1. Reveal Up (Smooth Translation) */
+.reveal-up {
+  transform: translateY(40px);
+  transition: opacity 1s var(--ease-out-expo), transform 1s var(--ease-out-expo);
+}
+.reveal-up.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* 2. Reveal Clip (For Images) */
+.reveal-clip {
+  clip-path: inset(100% 0 0 0);
+  transform: scale(1.05);
+  transition: clip-path 1.2s var(--ease-out-expo), transform 1.8s var(--ease-out-expo);
+}
+.reveal-clip.revealed {
+  opacity: 1;
+  clip-path: inset(0 0 0 0);
+  transform: scale(1);
+}
+
+/* 3. Reveal Blur (Ambient/Text Elements) */
+.reveal-blur {
+  filter: blur(10px);
+  transform: translateY(20px);
+  transition: opacity 1s var(--ease-out-expo), transform 1s var(--ease-out-expo), filter 1.2s var(--ease-out-expo);
+}
+.reveal-blur.revealed {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+/* 4. Reveal Scale (For containers/cards) */
+.reveal-scale {
+  transform: scale(0.95);
+  transition: opacity 0.8s var(--ease-out-expo), transform 1.2s var(--ease-out-expo);
+}
+.reveal-scale.revealed {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Legacy Reveal support */
+.reveal {
+  transform: translateY(30px);
+  transition: opacity 0.8s var(--ease-out-expo), transform 0.8s var(--ease-out-expo);
+}
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger Delays */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* Text Split Animation (used in JS hook/component) */
+.word-reveal-wrapper {
+  overflow: hidden;
+  display: inline-block;
+}
+.word-reveal-inner {
+  display: inline-block;
+  transform: translateY(110%);
+  transition: transform 0.9s var(--ease-out-expo);
+  will-change: transform;
+}
+.word-reveal-wrapper.revealed .word-reveal-inner {
+  transform: translateY(0);
+}
+
+/* --- Subtle Grid Background --- */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+/* --- Divider (Animated) --- */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: transform 1.2s var(--ease-in-out-cubic);
+}
+.divider.revealed {
+  transform: scaleX(1);
+}
+
+/* --- Reduced Motion --- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal, .reveal-up, .reveal-clip, .reveal-blur, .reveal-scale, .word-reveal-inner, .divider {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    filter: none !important;
+  }
+}
+
+/* --- Scrollbar Styling --- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* --- Selection --- */
+::selection {
+  background: var(--accent-muted);
+  color: var(--text-primary);
 }

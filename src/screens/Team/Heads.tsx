@@ -1,34 +1,30 @@
 import React from "react";
 
-const headsData = [
-  { name: "Jayesh Jain", role: "AI-ML" },
-  { name: "Pranav Tiwari", role: "AI-ML" },
-  { name: "Nishtha Goyal", role: "Web-Dev" },
-  { name: "Ashneet Jha", role: "Web-Dev" },
-  { name: "Jay Jariwala", role: "App-Dev" },
-  { name: "Anushka Agarwal", role: "App-Dev" },
-  { name: "Brindha B", role: "Corporate" },
-  { name: "Shreyas B", role: "Corporate" },
-  { name: "Allan Roy", role: "Corporate" },
-  { name: "Archit Patre", role: "Creatives" },
-  { name: "Shrey Sharma", role: "Creatives" },
-  { name: "Malvi Sood", role: "Editorial" },
-  { name: "Jay Agrawal", role: "Editorial" },
-  { name: "Devashree Hote", role: "Sponsorships" },
-  { name: "Krishved Singh Dugtal", role: "Sponsorships" },
+interface HeadMember {
+  name: string;
+  role: string;
+  image: string;
+}
+
+const headsData: HeadMember[] = [
+  { name: "Jayesh Jain", role: "AI-ML", image: "/images/Jayesh.png" },
+  { name: "Pranav Tiwari", role: "AI-ML", image: "/images/Pranav.png" },
+  { name: "Nishtha Goyal", role: "Web-Dev", image: "/images/Nishtha.png" },
+  { name: "Ashneet Jha", role: "Web-Dev", image: "/images/Ashneet.png" },
+  { name: "Jay Jariwala", role: "App-Dev", image: "/images/Jay.png" },
+  { name: "Anushka Agarwal", role: "App-Dev", image: "/images/Anushka.png" },
+  { name: "Brindha B", role: "Corporate", image: "/images/Brindha.png" },
+  { name: "Shreyas B", role: "Corporate", image: "/images/Shreyas.png" },
+  { name: "Allan Roy", role: "Corporate", image: "/images/Allan.png" },
+  { name: "Archit Patre", role: "Creatives", image: "/images/Archit.png" },
+  { name: "Shrey Sharma", role: "Creatives", image: "/images/Shrey.png" },
+  { name: "Devashree Hote", role: "Sponsorships", image: "/images/Devashree.png" },
+  { name: "Krishved Singh Dugtal", role: "Sponsorships", image: "/images/Krish.png" },
 ];
 
-const frameUrl = "/images/frame.png";
 const headsHeadingUrl = "/images/Heads.png";
 
 const Heads = () => {
-  const rows = [
-    headsData.slice(0, 4),
-    headsData.slice(4, 8),
-    headsData.slice(8, 12),
-    headsData.slice(12, 15), // Last row: Malvi + Jay + Devashree + Krish
-  ];
-
   return (
     <section className="w-full flex flex-col items-center pt-10 pb-6">
       <img
@@ -36,396 +32,36 @@ const Heads = () => {
         alt="Heads"
         className="mb-6 sm:mb-8 md:mb-10 w-[140px] sm:w-[160px] md:w-[180px] lg:w-[200px] xl:w-[240px] object-contain"
       />
-      <div className="w-full flex flex-col items-center">
-        {/* First 3 rows */}
-        {rows.slice(0, 3).map((row, rowIdx) => (
-          <div
-            key={rowIdx}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 gap-y-8 sm:gap-y-10 mb-6 sm:mb-8 w-full max-w-6xl"
-          >
-            {row.map((head, idx) => (
-              <div key={idx} className="flex flex-col items-center">
-                <div className="relative w-[150px] h-[180px] sm:w-[160px] sm:h-[200px] md:w-[180px] md:h-[220px] lg:w-[200px] lg:h-[240px] xl:w-[220px] xl:h-[260px] flex items-center justify-center">
-                  {/* Custom: Jayesh + Pranav */}
-                  {rowIdx === 0 && idx === 0 ? (
-                    <>
-                      <img
-                        src="/images/Jayesh.png"
-                        alt="Jayesh Jain"
-                        className="absolute z-10 object-cover"
-                        style={{
-                          top: "15%",
-                          left: "15%",
-                          width: "70%",
-                          height: "70%",
-                          borderRadius: "24px",
-                          clipPath:
-                            "polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%)",
-                        }}
-                      />
-                      <img
-                        src="/images/Jayesh.png"
-                        alt="Frame"
-                        className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
-                      />
-                    </>
-                  ) : rowIdx === 0 && idx === 1 ? (
-                    <>
-                      <img
-                        src="/images/Pranav.png"
-                        alt="Pranav Tiwari"
-                        className="absolute z-10 object-cover"
-                        style={{
-                          top: "15%",
-                          left: "15%",
-                          width: "70%",
-                          height: "70%",
-                          borderRadius: "24px",
-                          clipPath:
-                            "polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%)",
-                        }}
-                      />
-                      <img
-                        src="/images/Pranav.png"
-                        alt="Frame"
-                        className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
-                      />
-                    </>
-                  ) : rowIdx === 0 && idx === 2 ? (
-                    <>
-                      <img
-                        src="/images/Nishtha.png"
-                        alt="Pranav Tiwari"
-                        className="absolute z-10 object-cover"
-                        style={{
-                          top: "15%",
-                          left: "15%",
-                          width: "70%",
-                          height: "70%",
-                          borderRadius: "24px",
-                          clipPath:
-                            "polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%)",
-                        }}
-                      />
-                      <img
-                        src="/images/Nishtha.png"
-                        alt="Frame"
-                        className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
-                      />
-                    </>
-                  ) : rowIdx === 0 && idx === 3 ? (
-                    <>
-                      <img
-                        src="/images/Ashneet.png"
-                        alt="Pranav Tiwari"
-                        className="absolute z-10 object-cover"
-                        style={{
-                          top: "15%",
-                          left: "15%",
-                          width: "70%",
-                          height: "70%",
-                          borderRadius: "24px",
-                          clipPath:
-                            "polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%)",
-                        }}
-                      />
-                      <img
-                        src="/images/Ashneet.png"
-                        alt="Frame"
-                        className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
-                      />
-                    </>
-                  ) : rowIdx === 1 && idx === 0 ? (
-                    <>
-                      <img
-                        src="/images/Jay.png"
-                        alt="Jay Jariwala"
-                        className="absolute z-10 object-cover"
-                        style={{
-                          top: "15%",
-                          left: "15%",
-                          width: "70%",
-                          height: "70%",
-                          borderRadius: "24px",
-                          clipPath:
-                            "polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%)",
-                        }}
-                      />
-                      <img
-                        src="/images/Jay.png"
-                        alt="Frame"
-                        className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
-                      />
-                    </>
-                  ) : rowIdx === 1 && idx === 1 ? (
-                    <>
-                      <img
-                        src="/images/Anushka.png"
-                        alt="Anushka Agarwal"
-                        className="absolute z-10 object-cover"
-                        style={{
-                          top: "15%",
-                          left: "15%",
-                          width: "70%",
-                          height: "70%",
-                          borderRadius: "24px",
-                          clipPath:
-                            "polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%)",
-                        }}
-                      />
-                      <img
-                        src="/images/Anushka.png"
-                        alt="Frame"
-                        className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
-                      />
-                    </>
-                  ) : rowIdx === 1 && idx === 2 ? (
-                    <>
-                      <img
-                        src="/images/Brindha.png"
-                        alt="Brindha B"
-                        className="absolute z-10 object-cover"
-                        style={{
-                          top: "15%",
-                          left: "15%",
-                          width: "70%",
-                          height: "70%",
-                          borderRadius: "24px",
-                          clipPath:
-                            "polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%)",
-                        }}
-                      />
-                      <img
-                        src="/images/Brindha.png"
-                        alt="Frame"
-                        className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
-                      />
-                    </>
-                  ) : rowIdx === 1 && idx === 3 ? (
-                    <>
-                      <img
-                        src="/images/Shreyas.png"
-                        alt="Shreyas B"
-                        className="absolute z-10 object-cover"
-                        style={{
-                          top: "15%",
-                          left: "15%",
-                          width: "70%",
-                          height: "70%",
-                          borderRadius: "24px",
-                          clipPath:
-                            "polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%)",
-                        }}
-                      />
-                      <img
-                        src="/images/Shreyas.png"
-                        alt="Frame"
-                        className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
-                      />
-                    </>
-                  ) : rowIdx === 2 && idx === 0 ? (
-                    <>
-                      <img
-                        src="/images/Allan.png"
-                        alt="Allan Roy"
-                        className="absolute z-10 object-cover"
-                        style={{
-                          top: "15%",
-                          left: "15%",
-                          width: "70%",
-                          height: "70%",
-                          borderRadius: "24px",
-                          clipPath:
-                            "polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%)",
-                        }}
-                      />
-                      <img
-                        src="/images/Allan.png"
-                        alt="Frame"
-                        className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
-                      />
-                    </>
-                  ) : rowIdx === 2 && idx === 1 ? (
-                    <>
-                      <img
-                        src="/images/Archit.png"
-                        alt="Archit Patre"
-                        className="absolute z-10 object-cover"
-                        style={{
-                          top: "15%",
-                          left: "15%",
-                          width: "70%",
-                          height: "70%",
-                          borderRadius: "24px",
-                          clipPath:
-                            "polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%)",
-                        }}
-                      />
-                      <img
-                        src="/images/Archit.png"
-                        alt="Frame"
-                        className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
-                      />
-                    </>
-                  ) : rowIdx === 2 && idx === 2 ? (
-                    <>
-                      <img
-                        src="/images/Shrey.png"
-                        alt="Shrey Sharma"
-                        className="absolute z-10 object-cover"
-                        style={{
-                          top: "15%",
-                          left: "15%",
-                          width: "70%",
-                          height: "70%",
-                          borderRadius: "24px",
-                          clipPath:
-                            "polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%)",
-                        }}
-                      />
-                      <img
-                        src="/images/Shrey.png"
-                        alt="Frame"
-                        className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
-                      />
-                    </>
-                  ) : rowIdx === 2 && idx === 3 ? (
-                    <>
-                      <img
-                        src="/images/Malvi.png"
-                        alt="Malvi Sood"
-                        className="absolute z-10 object-cover"
-                        style={{
-                          top: "15%",
-                          left: "15%",
-                          width: "70%",
-                          height: "70%",
-                          borderRadius: "24px",
-                          clipPath:
-                            "polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%)",
-                        }}
-                      />
-                      <img
-                        src="/images/Malvi.png"
-                        alt="Frame"
-                        className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
-                      />
-                    </>
-                  ) : (
-                    <>
-                      <img
-                        src="/images/default.png"
-                        alt={head.name}
-                        className="absolute z-10 object-cover"
-                        style={{
-                          top: "15%",
-                          left: "15%",
-                          width: "70%",
-                          height: "70%",
-                          borderRadius: "24px",
-                          clipPath:
-                            "polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%)",
-                        }}
-                      />
-                      <img
-                        src={frameUrl}
-                        alt="Frame"
-                        className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
-                      />
-                    </>
-                  )}
-                </div>
-                <div className="mt-3 text-center">
-                  <span className="block text-white text-base md:text-lg font-semibold leading-tight">
-                    {head.name}
-                  </span>
-                  <span className="text-gray-300 text-xs italic mt-1">
-                    {head.role}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        ))}
-
-        {/* Last row: Malvi + Jay + Devashree + Krish */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 sm:gap-8 md:gap-10 gap-y-8 sm:gap-y-10 mb-6 sm:mb-8 w-full max-w-6xl">
-          {rows[3].map((head, idx) => (
+      <div className="w-full flex justify-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 sm:gap-8 md:gap-10 gap-y-8 sm:gap-y-10 mb-6 sm:mb-8 w-full max-w-6xl justify-items-center">
+          {headsData.map((head, idx) => (
             <div key={idx} className="flex flex-col items-center">
-              <div className="relative w-[180px] h-[220px] md:w-[220px] md:h-[260px] lg:w-[240px] lg:h-[280px] flex items-center justify-center">
-                {idx === 0 ? (
-                  <>
-                    <img
-                      src="/images/JayAG.png"
-                      alt="Jay Agrawal"
-                      className="absolute z-10 object-cover"
-                      style={{
-                        top: "15%",
-                        left: "15%",
-                        width: "70%",
-                        height: "70%",
-                        borderRadius: "24px",
-                        clipPath:
-                          "polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%)",
-                      }}
-                    />
-                    <img
-                      src="/images/JayAG.png"
-                      alt="Frame"
-                      className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
-                    />
-                  </>
-                ) : idx === 1 ? (
-                  <>
-                    <img
-                      src="/images/Devashree.png"
-                      alt="Devashree Hote"
-                      className="absolute z-10 object-cover"
-                      style={{
-                        top: "15%",
-                        left: "15%",
-                        width: "70%",
-                        height: "70%",
-                        borderRadius: "24px",
-                        clipPath:
-                          "polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%)",
-                      }}
-                    />
-                    <img
-                      src="/images/Devashree.png"
-                      alt="Frame"
-                      className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
-                    />
-                  </>
-                ) : idx === 2 ? (
-                  <>
-                    <img
-                      src="/images/Krish.png"
-                      alt="Krishved Singh Dugtal"
-                      className="absolute z-10 object-cover"
-                      style={{
-                        top: "15%",
-                        left: "15%",
-                        width: "70%",
-                        height: "70%",
-                        borderRadius: "24px",
-                        clipPath:
-                          "polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%)",
-                      }}
-                    />
-                    <img
-                      src="/images/Krish.png"
-                      alt="Frame"
-                      className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
-                    />
-                  </>
-                ) : null}
+              <div className="relative w-[150px] h-[180px] sm:w-[160px] sm:h-[200px] md:w-[180px] md:h-[220px] lg:w-[200px] lg:h-[240px] xl:w-[220px] xl:h-[260px] flex items-center justify-center transition-transform duration-300 hover:scale-[1.05]">
+                <img
+                  src={head.image}
+                  alt={head.name}
+                  className="absolute z-10 object-cover"
+                  style={{
+                    top: "15%",
+                    left: "15%",
+                    width: "70%",
+                    height: "70%",
+                    borderRadius: "24px",
+                    clipPath:
+                      "polygon(18% 0%, 82% 0%, 100% 18%, 100% 82%, 82% 100%, 18% 100%, 0% 82%, 0% 18%)",
+                  }}
+                />
+                <img
+                  src={head.image}
+                  alt="Frame"
+                  className="absolute inset-0 w-full h-full object-contain z-20 pointer-events-none"
+                />
               </div>
               <div className="mt-3 text-center">
-                <span className="block text-white text-base md:text-lg font-semibold leading-tight">
+                <span className="block text-white text-base md:text-lg font-semibold leading-tight font-montserrat">
                   {head.name}
                 </span>
-                <span className="text-gray-300 text-xs italic mt-1">
+                <span className="text-[var(--accent)] text-xs font-montserrat mt-1">
                   {head.role}
                 </span>
               </div>

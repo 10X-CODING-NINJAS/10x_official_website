@@ -1,77 +1,174 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useScrollReveal } from "../../hooks/useScrollReveal";
 
 export const Footerpage = (): JSX.Element => {
+  const sectionRef = useScrollReveal();
+  const navLinks = [
+    { label: "About", href: "/#about" },
+    { label: "Domains", href: "/#domains" },
+    { label: "Team", href: "/board" },
+  ];
+
+  const domainsList = [
+    { col1: ["Corporate", "Creatives", "Sponsorship"] },
+    { col2: ["AI/ML", "Web Dev", "App Dev"] },
+  ];
+
   return (
-    <div className="w-screen overflow-hidden bg-[#000000] flex flex-col items-stretch justify-start py-1 relative footer-full-bleed min-h-fit">
-      
-      <div className="w-full flex flex-col">
-        {/* Decorative line at the top */}
-        <div className="w-full h-1 md:h-2 my-0.5">
-          <img className="w-full h-full" alt="Line" src="./Footer/line-2.svg" />
-        </div>
+    <footer
+      ref={sectionRef}
+      className="relative w-full"
+      style={{ background: "var(--bg-primary)" }}
+      role="contentinfo"
+    >
+      {/* Top border */}
+      <div className="divider reveal" />
 
-        {/* Logo top left */}
-        <div className="w-full flex justify-start items-center mb-0.5 px-2 md:px-3">
-          <img className="w-16 md:w-20 h-8 md:h-12 object-contain" alt="10x logo" src="./Footer/10X Logo.svg" />
-        </div>
-
-        {/* Main content row */}
-        <div className="w-full flex flex-col md:flex-row justify-between items-center md:items-stretch px-3 md:px-6 mt-1 md:mt-2 gap-2 md:gap-3">
-          
-          {/* Mobile: nav centered, desktop: left */}
-          <nav className="flex flex-col gap-0.5 md:gap-1 w-full md:w-auto items-center md:items-start order-1 md:order-none ml-0 md:ml-4">
-            <Link to="/#about" className="[font-family:'Montserrat',Helvetica] font-normal text-white text-sm md:text-lg tracking-wide md:tracking-[1.50px] leading-tight hover:text-orange-500 cursor-pointer">About</Link>
-            <Link to="/#domains" className=" font-normal text-[#FFF] text-sm md:text-lg tracking-wide md:tracking-[1.50px] leading-tight hover:text-orange-500 cursor-pointer">Domains</Link>
-            <Link to="/board" className="[font-family:'Montserrat',Helvetica] font-normal text-white text-sm md:text-lg tracking-wide md:tracking-[1.50px] leading-tight hover:text-orange-500 cursor-pointer">Teams</Link>
-          </nav>
-          
-          {/* Center ninja gif */}
-          <div className="flex flex-col items-center justify-center py-0.5 order-2 md:order-none">
-            <div className="footer-ninja-wrapper transition-all scale-50 md:scale-75">
-              <img className="drop-shadow-[0_0_25px_rgba(255,140,0,0.6)]" alt="Ninjas" src="./Footer/Ninja-animated.gif" />
-            </div>
+      <div className="container-main py-12 lg:py-16 reveal-up">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-16">
+          {/* Column 1: Logo + Branding */}
+          <div>
+            <Link to="/" className="inline-block mb-4">
+              <img
+                src="./Footer/10X Logo.svg"
+                alt="10X Club SRM"
+                className="h-10 w-auto"
+              />
+            </Link>
+            <p
+              className="font-montserrat text-sm leading-relaxed"
+              style={{ color: "var(--text-tertiary)" }}
+            >
+              Coding Ninjas 10X Club SRM
+              <br />
+              Learn. Build. Ship.
+            </p>
           </div>
 
-          {/* Mobile: domains centered, desktop: right */}
-          <section className="flex flex-col items-center md:items-end gap-0.5 md:gap-1 w-full md:w-auto order-3 md:order-none md:mt-0 mr-0 md:mr-4">
-            <h2 className=" font-batman text-white text-sm md:text-xl tracking-[0] leading-[normal] whitespace-nowrap mb-0.5">Domains</h2>
-            
-            {/* ✨ THIS SECTION IS RESTRUCTURED INTO TWO COLUMNS ✨ */}
-            <div className="flex justify-center md:justify-end gap-x-2 md:gap-x-4">
-              {/* Left Column */}
-              <div className="flex flex-col gap-y-0">
-                <div className="[font-family:'Montserrat',Helvetica] font-medium text-white text-xs md:text-sm text-center md:text-right tracking-wide md:tracking-[1.50px] leading-tight">Corporate</div>
-                <div className="[font-family:'Montserrat',Helvetica] font-medium text-white text-xs md:text-sm text-center md:text-right tracking-wide md:tracking-[1.50px] leading-tight">Creatives</div>
-                <div className="[font-family:'Montserrat',Helvetica] font-medium text-white text-xs md:text-sm text-center md:text-right tracking-wide md:tracking-[1.50px] leading-tight">Editorial</div>
-                <div className="[font-family:'Montserrat',Helvetica] font-medium text-white text-xs md:text-sm text-center md:text-right tracking-wide md:tracking-[1.50px] leading-tight">Sponsorship</div>
+          {/* Column 2: Navigation */}
+          <div>
+            <h3
+              className="label-upper text-[0.7rem] mb-4"
+              style={{ color: "var(--text-secondary)" }}
+            >
+              Navigation
+            </h3>
+            <nav className="flex flex-col gap-2">
+              {navLinks.map((link) =>
+                link.href.startsWith("/#") ? (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    className="font-montserrat text-sm transition-all duration-300 hover:text-[var(--accent)] hover:translate-x-1 inline-block"
+                    style={{ color: "var(--text-secondary)" }}
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    className="font-montserrat text-sm transition-all duration-300 hover:text-[var(--accent)] hover:translate-x-1 inline-block"
+                    style={{ color: "var(--text-secondary)" }}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
+            </nav>
+          </div>
+
+          {/* Column 3: Domains */}
+          <div>
+            <h3
+              className="label-upper text-[0.7rem] mb-4"
+              style={{ color: "var(--text-secondary)" }}
+            >
+              Domains
+            </h3>
+            <div className="flex gap-8">
+              <div className="flex flex-col gap-1.5">
+                {domainsList[0].col1.map((d) => (
+                  <span
+                    key={d}
+                    className="font-montserrat text-sm"
+                    style={{ color: "var(--text-tertiary)" }}
+                  >
+                    {d}
+                  </span>
+                ))}
               </div>
-              {/* Right Column */}
-              <div className="flex flex-col gap-y-0">
-                <div className="[font-family:'Montserrat',Helvetica] font-medium text-white text-xs md:text-sm text-center md:text-right tracking-wide md:tracking-[1.50px] leading-tight">AI/ML</div>
-                <div className="[font-family:'Montserrat',Helvetica] font-medium text-white text-xs md:text-sm text-center md:text-right tracking-wide md:tracking-[1.50px] leading-tight">Web Dev</div>
-                <div className="[font-family:'Montserrat',Helvetica] font-medium text-white text-xs md:text-sm text-center md:text-right tracking-wide md:tracking-[1.50px] leading-tight">App Dev</div>
+              <div className="flex flex-col gap-1.5">
+                {domainsList[1].col2.map((d) => (
+                  <span
+                    key={d}
+                    className="font-montserrat text-sm"
+                    style={{ color: "var(--text-tertiary)" }}
+                  >
+                    {d}
+                  </span>
+                ))}
               </div>
             </div>
-          </section>
-        </div>
-
-        {/* Social icons row */}
-        <div className="w-full flex flex-col items-center mt-1 md:mt-1.5">
-          <h3 className="[font-family:'Montserrat',Helvetica] font-bold text-white text-xs md:text-sm tracking-wide md:tracking-[1.50px] leading-normal mb-0.5">Follow Us</h3>
-          <div className="flex gap-1">
-            <a href="https://www.linkedin.com/company/coding-ninjas-club-srm/posts/?feedView=all">
-              <img className="w-4 h-4 md:w-6 mx-1 md:h-6" alt="LinkedIn" src="./Footer/Vector-1.png" /> </a>
-            <a href="https://www.instagram.com/srm_cn/"><img className="w-4 h-4 md:w-6 md:h-6 mx-1" alt="Instagram" src="./Footer/Vector-3.png" /></a>
           </div>
         </div>
 
-        {/* Bottom decorative graphic */}
-        <div className="w-full relative h-4 md:h-8 mt-1 md:mt-1.5">
-          <img className="absolute w-full h-4 md:h-8 top-0 left-0 object-cover" alt="Rectangle" src="./Footer/Rectangle 5049.svg" />
-          <img className="absolute w-full h-4 md:h-8 top-0.5 md:top-1 left-0 object-cover" alt="Rectangle" src="./Footer/Rectangle 5050.svg" />
+        {/* Bottom row */}
+        <div className="divider reveal mt-10 mb-6" />
+
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          {/* Social Links */}
+          <div className="flex items-center gap-4">
+            <span
+              className="label-upper text-[0.65rem]"
+              style={{ color: "var(--text-tertiary)" }}
+            >
+              Follow Us
+            </span>
+            <a
+              href="https://www.linkedin.com/company/coding-ninjas-club-srm/posts/?feedView=all"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-opacity duration-200 hover:opacity-70"
+              aria-label="LinkedIn"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="var(--text-secondary)"
+              >
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+              </svg>
+            </a>
+            <a
+              href="https://www.instagram.com/srm_cn/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-opacity duration-200 hover:opacity-70"
+              aria-label="Instagram"
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="var(--text-secondary)"
+              >
+                <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z" />
+              </svg>
+            </a>
+          </div>
+
+          {/* Copyright */}
+          <p
+            className="font-montserrat text-xs"
+            style={{ color: "var(--text-tertiary)" }}
+          >
+            © 2026 Coding Ninjas 10X Club SRM
+          </p>
         </div>
       </div>
-    </div>
+    </footer>
   );
 };
