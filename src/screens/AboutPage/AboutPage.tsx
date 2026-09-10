@@ -74,7 +74,7 @@ const AboutPage: React.FC = () => {
               borderRadius: '50%',
               opacity: 0.4
             }}></div>
-            
+
             {/* Group Photo */}
             <div style={{
               position: 'relative',
@@ -83,9 +83,9 @@ const AboutPage: React.FC = () => {
               padding: '0',
               boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
             }}>
-              <img 
-                src="./About/ImageGroup.png" 
-                alt="Coding Ninjas 10X Club SRM Group Photo" 
+              <img
+                src="./About/ImageGroup.png"
+                alt="Coding Ninjas 10X Club SRM Group Photo"
                 style={{
                   width: '100%',
                   height: 'auto',
@@ -106,7 +106,7 @@ const AboutPage: React.FC = () => {
           padding: windowWidth <= 768 ? '1rem' : '0.5rem',
           overflow: 'hidden'
         }}>
-          <div style={{ 
+          <div style={{
             maxWidth: windowWidth <= 768 ? '100%' : '28rem',
             textAlign: windowWidth <= 768 ? 'center' : 'left'
           }}>
@@ -124,7 +124,7 @@ const AboutPage: React.FC = () => {
             }}>
               ABOUT
             </h1>
-            
+
             {/* Content Paragraphs */}
             <div style={{ marginBottom: windowWidth <= 768 ? '0.5rem' : '1rem' }}>
               <p style={{
@@ -134,22 +134,21 @@ const AboutPage: React.FC = () => {
                 marginBottom: '1rem',
                 textShadow: '0 0 8px rgba(249, 115, 22, 0.6)'
               }}>
-                Welcome to <span style={{ color: '#fb923c', fontWeight: 'bold' }}>Coding Ninjas 10X Club SRM</span>! 
-                We are a community of <span style={{ color: '#fb923c', fontWeight: 'bold' }}>passionate coders</span> and 
-                executives who love to explore the world of technology and push our limits to create innovative 
-                solutions. Our club is designed to provide a platform for students to <span style={{ color: '#fb923c', fontWeight: 'bold' }}>learn, share, and grow</span> 
-                their technical skills. We organize a variety of events throughout the year, from Hackathons and 
-                Workshops to amazing Gaming Events.
+                Welcome to <span style={{ color: '#fb923c', fontWeight: 'bold' }}>Coding Ninjas 10X Club SRM</span>!
+                We are a community of <span style={{ color: '#fb923c', fontWeight: 'bold' }}>passionate coders</span> and
+                executives who love to explore the world of technology and push our limits to create innovative
+                solutions. Our club is designed to provide a platform for students to <span style={{ color: '#fb923c', fontWeight: 'bold' }}>learn, share, and grow </span>
+                their technical skills. We organize a variety of events throughout the year, from Hackathons and Flagship Events.
               </p>
-              
+
               <p style={{
                 fontSize: windowWidth <= 480 ? '0.9rem' : '1rem',
                 lineHeight: '1.6',
                 color: 'white',
                 textShadow: '0 0 8px rgba(249, 115, 22, 0.6)'
               }}>
-                At <span style={{ color: '#fb923c', fontWeight: 'bold' }}>Coding Ninjas 10X Club SRM</span>, we believe that 
-                technology can be a force for good in the world. That's why we encourage our members to use their 
+                At <span style={{ color: '#fb923c', fontWeight: 'bold' }}>Coding Ninjas 10X Club SRM</span>, we believe that
+                technology can be a force for good in the world. That's why we encourage our members to use their
                 skills to solve real-world problems and make a <span style={{ color: '#fb923c', fontWeight: 'bold' }}>positive impact on the society</span>.
               </p>
             </div>

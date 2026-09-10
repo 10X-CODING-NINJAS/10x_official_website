@@ -5,6 +5,7 @@ import EventCQ from "./EventsCQ/EventsCQ";
 import { LandingPage } from "./TitlePage/LandingPage";
 import { Button } from "./Domains/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { JoinUsButton } from "./components/JoinUsButton";
 
 const navigationItems = [
   { label: "Home", href: "/#", active: false },
@@ -104,17 +105,9 @@ const Home: React.FC = () => {
             })}
 
             {/* Join Us CTA in mobile menu */}
-            <a
-              href="https://www.instagram.com/srm_cn/"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="w-full"
-            >
-              <div className="w-full text-center py-2 rounded-full bg-gradient-to-br from-[#ff5300] to-[#ffbb9a] text-white font-semibold shadow hover:opacity-90 transition">
-                Join Us
-              </div>
-            </a>
+            <div className="w-full">
+              <JoinUsButton variant="gradient" onClose={() => setIsMobileMenuOpen(false)} />
+            </div>
           </nav>
         </div>
       </header>

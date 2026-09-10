@@ -1,4 +1,5 @@
 import React from "react";
+import { JoinUsButton } from "../components/JoinUsButton";
 
 const navigationItems = [
   { label: "Home", href: "/#" },
@@ -71,15 +72,7 @@ export const LandingPage = (): JSX.Element => {
               Coding Ninjas 10X Club SRM is a community of builders and curious
               minds—learning, creating and shipping impact with technology.
             </p>
-            <a
-              href="https://www.instagram.com/srm_cn/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-6 inline-block rounded-full border border-[#ff5200] px-6 py-3 text-base text-white transition-all duration-300 hover:bg-[#ff5200] hover:text-white"
-              style={{ fontFamily: "'Bruno Ace', sans-serif" }}
-            >
-              Join Us
-            </a>
+            <JoinUsButton variant="outline" />
           </div>
         </div>
 

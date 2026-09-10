@@ -3,6 +3,7 @@ import { Card, CardContent } from "../../components/ui/card";
 import { Button } from "../../components/ui/button";
 import { Footerpage } from "../../../Footerpage/Footerpage";
 import { Menu, X } from "lucide-react";
+import { JoinUsButton } from "../../../components/JoinUsButton";
 
 export const Technical = (): JSX.Element => {
   const [active, setActive] = useState("Home");
@@ -187,17 +188,9 @@ export const Technical = (): JSX.Element => {
             })}
 
             {/* Join Us CTA in mobile menu */}
-            <a
-              href="https://www.instagram.com/srm_cn/"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="w-full"
-            >
-              <div className="w-full text-center py-2 rounded-full bg-gradient-to-br from-[#ff5300] to-[#ffbb9a] text-white font-semibold shadow hover:opacity-90 transition">
-                Join Us
-              </div>
-            </a>
+            <div className="w-full">
+              <JoinUsButton variant="gradient" onClose={() => setIsMobileMenuOpen(false)} />
+            </div>
           </nav>
         </div>
       </header>
