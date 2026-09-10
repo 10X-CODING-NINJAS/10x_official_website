@@ -97,6 +97,63 @@ const domainOptions = [
   },
 ];
 
+/* ─── Helpers ──────────────────────────────────────────────────────────────── */
+
+const isMobileScreen = () => window.innerWidth < 640;
+
+/* ─── Shared Option List ───────────────────────────────────────────────────── */
+
+const OptionList: React.FC<{ onSelect: (url: string) => void }> = ({ onSelect }) => (
+  <div className="py-1">
+    {domainOptions.map((option, idx) => {
+      const Icon = DOMAIN_ICONS[option.label];
+      return (
+        <button
+          key={option.label}
+          onClick={() => onSelect(option.url)}
+          className="w-full flex items-center gap-3 px-4 py-[11px] text-left transition-all duration-150 group hover:bg-[#ff5200]/10 border-b border-white/[0.04] last:border-b-0 active:bg-[#ff5200]/20"
+          style={{ fontFamily: "'Montserrat', sans-serif" }}
+        >
+          {/* Icon box */}
+          <span
+            className="flex-shrink-0 w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 group-hover:bg-[#ff5200]/20"
+            style={{
+              background: "rgba(255,82,0,0.08)",
+              color: idx % 2 === 0 ? "#ff7a40" : "#ffaa70",
+            }}
+          >
+            <Icon />
+          </span>
+
+          {/* Label */}
+          <span className="text-[14px] font-medium text-white/90 group-hover:text-white tracking-wide flex-1 text-left">
+            {option.label}
+          </span>
+
+          {/* Arrow */}
+          <svg
+            width="14" height="14" viewBox="0 0 14 14" fill="none"
+            className="flex-shrink-0 opacity-30 group-hover:opacity-100 transition-opacity duration-200"
+            style={{ color: "#ff5200" }}
+          >
+            <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+      );
+    })}
+  </div>
+);
+
+/* ─── Chevron SVG ──────────────────────────────────────────────────────────── */
+
+const Chevron: React.FC<{ open: boolean }> = ({ open }) => (
+  <svg width="10" height="10" viewBox="0 0 10 10" fill="none"
+    style={{ transition: "transform 0.3s", transform: open ? "rotate(180deg)" : "rotate(0deg)", flexShrink: 0 }}
+  >
+    <path d="M1 3l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+  </svg>
+);
+
 /* ─── Component ────────────────────────────────────────────────────────────── */
 
 interface JoinUsButtonProps {
@@ -109,24 +166,40 @@ export const JoinUsButton: React.FC<JoinUsButtonProps> = ({
   onClose,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [dropdownStyle, setDropdownStyle] = useState<React.CSSProperties>({});
   const btnRef = useRef<HTMLButtonElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  /* Position the dropdown using fixed coords so it is never clipped */
-  const openDropdown = () => {
-    if (!btnRef.current) return;
-    const rect = btnRef.current.getBoundingClientRect();
-    const dropW = 272;
-    const viewW = window.innerWidth;
+  /* Detect mobile breakpoint on mount + resize */
+  useEffect(() => {
+    const check = () => setIsMobile(isMobileScreen());
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
+  /* Compute desktop dropdown position */
+  const calcDesktopStyle = (): React.CSSProperties => {
+    if (!btnRef.current) return {};
+    const rect = btnRef.current.getBoundingClientRect();
+    const dropW = 280;
+    const viewW = window.innerWidth;
+    const viewH = window.innerHeight;
     let left = rect.left;
     if (left + dropW > viewW - 12) left = viewW - dropW - 12;
     if (left < 8) left = 8;
+    // open upward if not enough space below
+    const spaceBelow = viewH - rect.bottom - 12;
+    const approxH = 320; // rough height of 6 items
+    const top = spaceBelow >= approxH ? rect.bottom + 8 : rect.top - approxH - 8;
+    return { position: "fixed", top, left, width: dropW };
+  };
 
-    const top = rect.bottom + 8;
-
-    setDropdownStyle({ position: "fixed", top, left, width: dropW });
+  const openDropdown = () => {
+    if (!isMobileScreen()) {
+      setDropdownStyle(calcDesktopStyle());
+    }
     setIsOpen(true);
   };
 
@@ -141,10 +214,9 @@ export const JoinUsButton: React.FC<JoinUsButtonProps> = ({
   useEffect(() => {
     if (!isOpen) return;
     const handler = (e: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(e.target as Node)
-      ) {
+      const target = e.target as Node;
+      // for mobile sheet, clicking backdrop closes it
+      if (containerRef.current && !containerRef.current.contains(target)) {
         setIsOpen(false);
       }
     };
@@ -152,27 +224,27 @@ export const JoinUsButton: React.FC<JoinUsButtonProps> = ({
     return () => document.removeEventListener("mousedown", handler);
   }, [isOpen]);
 
-  /* Reposition on scroll/resize */
+  /* Reposition desktop dropdown on scroll/resize */
   useEffect(() => {
-    if (!isOpen) return;
-    const update = () => {
-      if (btnRef.current) {
-        const rect = btnRef.current.getBoundingClientRect();
-        const dropW = 272;
-        const viewW = window.innerWidth;
-        let left = rect.left;
-        if (left + dropW > viewW - 12) left = viewW - dropW - 12;
-        if (left < 8) left = 8;
-        setDropdownStyle({ position: "fixed", top: rect.bottom + 8, left, width: dropW });
-      }
-    };
+    if (!isOpen || isMobile) return;
+    const update = () => setDropdownStyle(calcDesktopStyle());
     window.addEventListener("scroll", update, true);
     window.addEventListener("resize", update);
     return () => {
       window.removeEventListener("scroll", update, true);
       window.removeEventListener("resize", update);
     };
-  }, [isOpen]);
+  }, [isOpen, isMobile]);
+
+  /* Lock body scroll when mobile sheet is open */
+  useEffect(() => {
+    if (isMobile && isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [isMobile, isOpen]);
 
   const handleOptionClick = (url: string) => {
     window.open(url, "_blank", "noopener,noreferrer");
@@ -180,138 +252,107 @@ export const JoinUsButton: React.FC<JoinUsButtonProps> = ({
     onClose?.();
   };
 
-  return (
-    <div ref={containerRef} className="relative inline-block">
-      {/* ── Trigger Button ── */}
-      {variant === "outline" ? (
-        <button
-          ref={btnRef}
-          id="join-us-btn"
-          onClick={toggleOpen}
-          className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#ff5200] px-6 py-3 text-base text-white transition-all duration-300 hover:bg-[#ff5200] focus:outline-none"
-          style={{ fontFamily: "'Bruno Ace', sans-serif" }}
-        >
-          Join Us
-          <svg
-            width="10"
-            height="10"
-            viewBox="0 0 10 10"
-            fill="currentColor"
-            style={{
-              transition: "transform 0.3s",
-              transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-            }}
-          >
-            <path d="M1 3l4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-          </svg>
-        </button>
-      ) : (
-        <button
-          ref={btnRef}
-          id="join-us-mobile-btn"
-          onClick={toggleOpen}
-          className="w-full inline-flex items-center justify-center gap-2 py-2 rounded-full bg-gradient-to-br from-[#ff5300] to-[#ffbb9a] text-white font-semibold shadow hover:opacity-90 transition focus:outline-none"
-        >
-          Join Us
-          <svg
-            width="10"
-            height="10"
-            viewBox="0 0 10 10"
-            fill="currentColor"
-            style={{
-              transition: "transform 0.3s",
-              transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
-            }}
-          >
-            <path d="M1 3l4 4 4-4" stroke="currentColor" strokeWidth="1.5" fill="none" strokeLinecap="round" />
-          </svg>
-        </button>
+  /* ── Shared panel content ── */
+  const panelContent = (
+    <>
+      {/* Handle bar (mobile only) */}
+      {isMobile && (
+        <div className="flex justify-center pt-3 pb-1">
+          <div className="w-10 h-1 rounded-full bg-white/20" />
+        </div>
       )}
 
-      {/* ── Dropdown Portal (fixed so it never clips) ── */}
+      {/* Header */}
+      <div className={`px-4 border-b border-[#ff5200]/15 ${isMobile ? "pt-2 pb-3" : "pt-3 pb-2"}`}>
+        <p
+          className="text-[#ff5200] text-[10px] font-bold tracking-[0.2em] uppercase"
+          style={{ fontFamily: "'Montserrat', sans-serif" }}
+        >
+          Choose Your Domain
+        </p>
+      </div>
+
+      {/* Options */}
+      <OptionList onSelect={handleOptionClick} />
+    </>
+  );
+
+  return (
+    <>
+      <div ref={containerRef} className="relative inline-block">
+        {/* ── Trigger Button ── */}
+        {variant === "outline" ? (
+          <button
+            ref={btnRef}
+            id="join-us-btn"
+            onClick={toggleOpen}
+            className="mt-6 inline-flex items-center gap-2 rounded-full border border-[#ff5200] px-6 py-3 text-base text-white transition-all duration-300 hover:bg-[#ff5200] focus:outline-none"
+            style={{ fontFamily: "'Bruno Ace', sans-serif" }}
+          >
+            Join Us
+            <Chevron open={isOpen} />
+          </button>
+        ) : (
+          <button
+            ref={btnRef}
+            id="join-us-mobile-btn"
+            onClick={toggleOpen}
+            className="w-full inline-flex items-center justify-center gap-2 py-2 rounded-full bg-gradient-to-br from-[#ff5300] to-[#ffbb9a] text-white font-semibold shadow hover:opacity-90 transition focus:outline-none"
+          >
+            Join Us
+            <Chevron open={isOpen} />
+          </button>
+        )}
+      </div>
+
+      {/* ── Dropdown / Bottom Sheet ── */}
       {isOpen && (
         <>
+          {/* Backdrop */}
           <div
             className="fixed inset-0 z-[998]"
+            style={{ background: isMobile ? "rgba(0,0,0,0.6)" : "transparent" }}
             onClick={() => setIsOpen(false)}
           />
-          <div
-            style={{
-              ...dropdownStyle,
-              zIndex: 999,
-              animation: "joinDropdownIn 0.18s ease-out forwards",
-            }}
-            className="rounded-2xl border border-[#ff5200]/25 bg-[#0d0d0d]/95 backdrop-blur-2xl shadow-[0_12px_40px_rgba(255,82,0,0.22)]"
-          >
-            {/* Header */}
-            <div className="px-4 pt-3 pb-2 border-b border-[#ff5200]/15">
-              <p
-                className="text-[#ff5200] text-[10px] font-bold tracking-[0.2em] uppercase"
-                style={{ fontFamily: "'Montserrat', sans-serif" }}
-              >
-                Choose Your Domain
-              </p>
+
+          {isMobile ? (
+            /* ── Mobile: Bottom Sheet ── */
+            <div
+              className="fixed bottom-0 left-0 right-0 z-[999] rounded-t-3xl border-t border-[#ff5200]/20 bg-[#0d0d0d] shadow-[0_-12px_40px_rgba(255,82,0,0.18)]"
+              style={{ animation: "sheetIn 0.25s cubic-bezier(0.22,1,0.36,1) forwards" }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              {panelContent}
+              {/* Safe area spacer */}
+              <div style={{ height: "env(safe-area-inset-bottom, 16px)" }} />
             </div>
-
-            {/* Options list */}
-            <div className="py-1">
-              {domainOptions.map((option, idx) => {
-                const Icon = DOMAIN_ICONS[option.label];
-                return (
-                  <button
-                    key={option.label}
-                    onClick={() => handleOptionClick(option.url)}
-                    className="w-full flex items-center gap-3 px-4 py-[10px] text-left transition-all duration-150 group hover:bg-[#ff5200]/10 border-b border-white/[0.04] last:border-b-0"
-                    style={{ fontFamily: "'Montserrat', sans-serif" }}
-                  >
-                    {/* Icon box */}
-                    <span
-                      className="flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center transition-all duration-200 group-hover:bg-[#ff5200]/20"
-                      style={{
-                        background: "rgba(255,82,0,0.08)",
-                        color: idx % 2 === 0 ? "#ff7a40" : "#ffaa70",
-                      }}
-                    >
-                      <Icon />
-                    </span>
-
-                    {/* Label */}
-                    <span className="text-[13px] font-medium text-white/90 group-hover:text-white tracking-wide flex-1">
-                      {option.label}
-                    </span>
-
-                    {/* Arrow */}
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 14 14"
-                      fill="none"
-                      className="flex-shrink-0 opacity-30 group-hover:opacity-100 transition-opacity duration-200"
-                      style={{ color: "#ff5200" }}
-                    >
-                      <path
-                        d="M3 7h8M8 4l3 3-3 3"
-                        stroke="currentColor"
-                        strokeWidth="1.4"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                    </svg>
-                  </button>
-                );
-              })}
+          ) : (
+            /* ── Desktop: Smart Dropdown ── */
+            <div
+              style={{
+                ...dropdownStyle,
+                zIndex: 999,
+                animation: "joinDropdownIn 0.18s ease-out forwards",
+              }}
+              className="rounded-2xl border border-[#ff5200]/25 bg-[#0d0d0d]/95 backdrop-blur-2xl shadow-[0_12px_40px_rgba(255,82,0,0.22)]"
+            >
+              {panelContent}
             </div>
-          </div>
+          )}
 
           <style>{`
             @keyframes joinDropdownIn {
               from { opacity: 0; transform: translateY(-6px) scale(0.98); }
-              to   { opacity: 1; transform: translateY(0)   scale(1);    }
+              to   { opacity: 1; transform: translateY(0) scale(1); }
+            }
+            @keyframes sheetIn {
+              from { transform: translateY(100%); opacity: 0.6; }
+              to   { transform: translateY(0);    opacity: 1; }
             }
           `}</style>
         </>
       )}
-    </div>
+    </>
   );
 };
 
