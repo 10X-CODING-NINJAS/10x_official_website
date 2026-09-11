@@ -210,13 +210,17 @@ export const JoinUsButton: React.FC<JoinUsButtonProps> = ({
     else openDropdown();
   };
 
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
   /* Close on outside click */
   useEffect(() => {
     if (!isOpen) return;
     const handler = (e: MouseEvent) => {
       const target = e.target as Node;
-      // for mobile sheet, clicking backdrop closes it
-      if (containerRef.current && !containerRef.current.contains(target)) {
+      if (
+        containerRef.current && !containerRef.current.contains(target) &&
+        dropdownRef.current && !dropdownRef.current.contains(target)
+      ) {
         setIsOpen(false);
       }
     };
