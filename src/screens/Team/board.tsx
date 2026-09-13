@@ -51,9 +51,8 @@ const Board: React.FC = () => {
             return (
               <Button
                 key={item.label}
-                className={`flex h-[45px] items-center justify-center gap-2.5 rounded-[50px] border-[3px] border-solid border-[#4c1900] px-6 transition-all duration-300 hover:bg-[#4c1900] ${
-                  isActive ? "bg-black border-black" : "bg-transparent"
-                }`}
+                className={`flex h-[45px] items-center justify-center gap-2.5 rounded-[50px] border-[3px] border-solid border-[#4c1900] px-6 transition-all duration-300 hover:bg-[#4c1900] ${isActive ? "bg-black border-black" : "bg-transparent"
+                  }`}
               >
                 <a
                   href={item.href}
@@ -81,9 +80,8 @@ const Board: React.FC = () => {
 
         {/* Mobile Navigation Menu */}
         <div
-          className={`md:hidden fixed top-0 left-0 w-full h-screen bg-black/95 backdrop-blur-md z-40 transition-all duration-300 ${
-            isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
-          }`}
+          className={`md:hidden fixed top-0 left-0 w-full h-screen bg-black/95 backdrop-blur-md z-40 transition-all duration-300 ${isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
+            }`}
         >
           <nav className="flex flex-col items-start justify-center h-full pl-8 gap-8">
             {navigationItems.map((item) => {
@@ -96,9 +94,8 @@ const Board: React.FC = () => {
                     setActive(item.label);
                     setIsMobileMenuOpen(false);
                   }}
-                  className={`relative [font-family:'Montserrat',Helvetica] font-semibold text-white text-[1.5rem] tracking-[-0.72px] leading-[normal] transition-all duration-300 hover:text-[#ff5200] cursor-pointer ${
-                    isActive ? "text-[#ff5200]" : "text-white"
-                  }`}
+                  className={`relative [font-family:'Montserrat',Helvetica] font-semibold text-white text-[1.5rem] tracking-[-0.72px] leading-[normal] transition-all duration-300 hover:text-[#ff5200] cursor-pointer ${isActive ? "text-[#ff5200]" : "text-white"
+                    }`}
                 >
                   {item.label}
                 </a>
@@ -126,11 +123,10 @@ const Board: React.FC = () => {
                       setActive(item.label);
                       setOpen(false);
                     }}
-                    className={`w-full text-center py-2 rounded-full font-medium transition border ${
-                      isActive
-                        ? "bg-[#4c1900] border-[#4c1900] text-white"
-                        : "border-[#4c1900] text-white hover:bg-[#4c1900]/20"
-                    }`}
+                    className={`w-full text-center py-2 rounded-full font-medium transition border ${isActive
+                      ? "bg-[#4c1900] border-[#4c1900] text-white"
+                      : "border-[#4c1900] text-white hover:bg-[#4c1900]/20"
+                      }`}
                   >
                     {item.label}
                   </a>
@@ -153,7 +149,7 @@ const Board: React.FC = () => {
         style={{ opacity: 1 }}
       />
 
- {/* Board content (same as before) */}
+      {/* Board content (same as before) */}
       <div className="w-full flex flex-col items-center pt-8">
         <img
           src="/images/BackstageNinjas.png"
@@ -166,13 +162,13 @@ const Board: React.FC = () => {
           {/* Left frame and text */}
           <div className="flex flex-col items-center mt-[25px]">
             <img
-              src="/images/Vansh ECEO.png"
+              src="/images/Shreyas B.png"
               alt="Frame Left"
               className="w-[300px] max-w-full h-auto"
               draggable="false"
             />
             <div className="mt-4 text-center">
-              <div className="text-white text-sm font-bold">Vansh Jain</div>
+              <div className="text-white text-sm font-bold">Shreyas B</div>
               <div className="text-gray-300 text-xs italic mt-1">
                 Emerging Chief Executive Officer
               </div>
@@ -200,14 +196,14 @@ const Board: React.FC = () => {
             />
 
             <img
-              src="/images/Rafae CEO.png"
+              src="/images/SHREY SHARMA.png"
               alt="Frame Center"
               className="w-[300px] max-w-full h-auto relative z-20 mb-25"
               draggable="false"
             />
             <div className="mt-4 text-center relative z-20">
               <div className="text-white text-sm font-bold">
-                Rafae Mohammed Hussain
+                Shrey Sharma
               </div>
               <div className="text-gray-300 text-xs italic mt-1">
                 Chief Executive Officer
@@ -217,13 +213,13 @@ const Board: React.FC = () => {
           {/* Right frame and text */}
           <div className="flex flex-col items-center mt-[25px]">
             <img
-              src="/images/Hemant CTO.png"
+              src="/images/PRATYUSH SRIVASTAVA.png"
               alt="Frame Right"
               className="w-[300px] max-w-full h-auto"
               draggable="false"
             />
             <div className="mt-4 text-center">
-              <div className="text-white text-sm font-bold">Hemant Thakkar</div>
+              <div className="text-white text-sm font-bold">Pratyush Srivastava</div>
               <div className="text-gray-300 text-xs italic mt-1">
                 Chief Technical Officer
               </div>
@@ -242,52 +238,35 @@ const Board: React.FC = () => {
           {/* Far left frame and text */}
           <div className="flex flex-col items-center">
             <img
-              src="/images/Atharv CMO.png"
+              src="/images/BRINDHA B.png"
               alt="Frame Far Left"
               className="w-[300px] max-w-full h-auto"
               draggable="false"
             />
             <div className="mt-4 text-center">
-              <div className="text-white text-sm font-bold">Atharv Garg</div>
+              <div className="text-white text-sm font-bold">Brindha B</div>
               <div className="text-gray-300 text-xs italic mt-1">
                 Chief Marketing Officer
-              </div>
-            </div>
-          </div>
-          {/* Middle frame and text */}
-          <div className="flex flex-col items-center mt-[25px]">
-            <img
-              src="/images/Ashmit CCO.png"
-              alt="Frame Below The Board"
-              className="w-[300px] max-w-full h-auto"
-              draggable="false"
-            />
-            <div className="mt-4 text-center">
-              <div className="text-white text-sm font-bold">
-                Ashmit Bhadoria
-              </div>
-              <div className="text-gray-300 text-xs italic mt-1">
-                Chief Creative Officer
               </div>
             </div>
           </div>
           {/* Far right frame and text */}
           <div className="flex flex-col items-center">
             <img
-              src="/images/Hetav COO.png"
+              src="/images/Devashree Hote.png"
               alt="Frame Far Right"
               className="w-[300px] max-w-full h-auto"
               draggable="false"
             />
             <div className="mt-4 text-center">
-              <div className="text-white text-sm font-bold">Hetav Desai</div>
+              <div className="text-white text-sm font-bold">Devashree Hote</div>
               <div className="text-gray-300 text-xs italic mt-1">
                 Chief Outreach Officer
               </div>
             </div>
           </div>
         </div>
-        {/* ... (rest of your board content remains unchanged) ... */}
+        {/* Heads and Associates sections */}
         <div className="w-full flex flex-col items-center mt-16">
           <Heads />
           <Associates />
