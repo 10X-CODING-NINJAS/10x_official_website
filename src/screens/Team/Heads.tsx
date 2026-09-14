@@ -2,12 +2,12 @@ import React from "react";
 
 const headsData = [
   { name: "Prisha Kushwaha", role: "AI-ML Head", image: "/images/Prisha Kushwaha_AIML_HEAD.png" },
-  { name: "Yatiendra Rai", role: "Web-Dev Head", image: "/images/YATINDRA RAI.png" },
+  { name: "Yatindra Rai", role: "Web-Dev Head", image: "/images/YATINDRA RAI.png" },
   { name: "Ishaan Upponi", role: "Web-Dev Head", image: "/images/ISHAN.png" },
   { name: "Dhwani Sharma", role: "Corporate Head", image: "/images/DHAWANI.png" },
-  { name: "Aradhya", role: "Corporate Head", image: "/images/ARADHYA.png" },
+  { name: "Aradhya Somani", role: "Corporate Head", image: "/images/ARADHYA.png" },
   { name: "Garima Gupta", role: "Creative Head", image: "/images/GARIMA GUPTA.png" },
-  { name: "Krish", role: "Sponsorship Head", image: "/images/Krishved_Sponsorship_Head.png" },
+  { name: "Krish Ved Duggal", role: "Sponsorship Head", image: "/images/Krishved_Sponsorship_Head.png" },
 ];
 
 const Heads = () => {
