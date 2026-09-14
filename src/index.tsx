@@ -8,6 +8,7 @@ import Board from "./screens/Team/board";
 import Home from "./screens/Home";
 import { MobileDomain } from "./screens/Domains/screens/MobileDomain/MobileDomain";
 import Technical from "./screens/Domains/screens/Technical/Technical";
+import JoinUs from "./screens/JoinUs/JoinUs";
 import "./global.css";
 
 // Layout that includes shared navbar + footer for all main pages
@@ -31,6 +32,7 @@ createRoot(document.getElementById("app") as HTMLElement).render(
           <Route path="/teams" element={<Board />} />
           <Route path="/technical" element={<Technical />} />
           <Route path="/mobile" element={<MobileDomain />} />
+          <Route path="/join" element={<JoinUs />} />
         </Route>
       </Routes>
     </BrowserRouter>

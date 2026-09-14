@@ -6,6 +6,7 @@ const navigationItems = [
   { label: "About", href: "/#about" },
   { label: "Domains", href: "/#domains" },
   { label: "Team", href: "/board" },
+  { label: "Join Us", href: "/join" },
 ];
 
 const Navbar: React.FC = () => {
@@ -43,6 +44,7 @@ const Navbar: React.FC = () => {
     if (path === "/technical" || path === "/mobile") return "Domains";
     if (hash === "#about") return "About";
     if (hash === "#domains") return "Domains";
+    if (path === "/join") return "Join Us";
     return "Home";
   };
 
@@ -113,16 +115,14 @@ const Navbar: React.FC = () => {
           </nav>
 
           {/* Desktop CTA */}
-          <a
-            href="https://www.instagram.com/srm_cn/"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/join"
             className="hidden md:inline-flex btn-primary group relative overflow-hidden text-[0.75rem] py-2 px-5"
           >
             <span className="relative z-10 flex items-center">
               JOIN 10X
             </span>
-          </a>
+          </Link>
 
           {/* Mobile Hamburger */}
           <button
@@ -195,15 +195,13 @@ const Navbar: React.FC = () => {
           })}
 
           <div className="mt-8" style={{ animationDelay: `${navigationItems.length * 80}ms` }}>
-            <a
-              href="https://www.instagram.com/srm_cn/"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/join"
               onClick={() => setIsMobileOpen(false)}
               className={`btn-primary text-sm ${isMobileOpen ? "animate-fade-in-up" : ""}`}
             >
               JOIN 10X
-            </a>
+            </Link>
           </div>
         </nav>
       </div>
