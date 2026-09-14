@@ -8,7 +8,7 @@ import { JoinUsButton } from "../../../components/JoinUsButton";
 export const MobileDomain = (): JSX.Element => {
   const [active, setActive] = useState("Home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  
+  const [selectedCard, setSelectedCard] = useState<any>(null);
   const navItems = [
     { label: "Home", href: "/#" },
     { label: "Domains", href: "/#domains" },
@@ -24,24 +24,21 @@ export const MobileDomain = (): JSX.Element => {
       image: "/NonTech-assets/Creatives.png",
       imageAlt: "Creatives",
       rectangle: "/Desktop-assets/rectangle-32.svg",
+      description: "Makes the design for the website, designs certificates, posters, banners, ID cards and all visual aesthetics.",
     },
     {
       title: "CORPORATE",
       image: "/NonTech-assets/coorp.png",
       imageAlt: "Corporate",
       rectangle: "/Desktop-assets/rectangle-5029.svg",
+      description: "Handles public relations, communications, outreach, and overall event management for the club.",
     },
     {
       title: "SPONSORSHIP",
       image: "/NonTech-assets/sponsi.png",
       imageAlt: "Sponsorship",
       rectangle: "/Desktop-assets/rectangle-5030.svg",
-    },
-    {
-      title: "EDITORIAL",
-      image: "/NonTech-assets/edi.png",
-      imageAlt: "Editorial",
-      rectangle: "/Desktop-assets/rectangle-5029.svg",
+      description: "Secures financial support, brand partnerships, and necessary resources for organizing club events.",
     },
   ];
 
@@ -176,18 +173,16 @@ export const MobileDomain = (): JSX.Element => {
       </div>
 
       {/* Logo */}
-      {/* <div className="absolute top-4 left-4 z-40">
+      <div className="absolute top-4 left-4 z-40">
         <div className="relative">
           <img
             className="w-20 md:w-28 object-contain"
             alt="10x Logo"
-            src="/Desktop-assets/10x-logo--stock-.svg"
+            src="/Title/10xlogo.png"
           />
-          <div className="absolute -bottom-1 right-1 text-white text-[9px] md:text-[11px]">
-            SRM
-          </div>
         </div>
-      </div> */}
+      </div>
+
 
       {/* Content */}
       <div className="relative z-30 min-h-[calc(100dvh-160px)] flex items-center justify-center px-4">
@@ -203,7 +198,10 @@ export const MobileDomain = (): JSX.Element => {
                 >
                   {domainCards[0].title}
                 </h3>
-                <Card className="relative w-full h-48 md:h-52 bg-transparent border-none overflow-hidden group">
+                <Card 
+                  className="relative w-full h-48 md:h-52 bg-transparent border-none overflow-hidden group cursor-pointer"
+                  onClick={() => setSelectedCard(domainCards[0])}
+                >
                   <CardContent className="p-0 h-full relative">
                     <img
                       className="absolute inset-0 w-full h-full object-contain opacity-90"
@@ -232,7 +230,10 @@ export const MobileDomain = (): JSX.Element => {
                 >
                   {domainCards[1].title}
                 </h3>
-                <Card className="relative w-full h-40 md:h-44 bg-transparent border-none overflow-hidden group">
+                <Card 
+                  className="relative w-full h-40 md:h-44 bg-transparent border-none overflow-hidden group cursor-pointer"
+                  onClick={() => setSelectedCard(domainCards[1])}
+                >
                   <CardContent className="p-0 h-full relative">
                     <img
                       className="absolute inset-0 w-full h-full object-contain opacity-90"
@@ -271,7 +272,10 @@ export const MobileDomain = (): JSX.Element => {
                 >
                   {domainCards[2].title}
                 </h3>
-                <Card className="relative w-full h-40 md:h-44 bg-transparent border-none overflow-hidden group">
+                <Card 
+                  className="relative w-full h-40 md:h-44 bg-transparent border-none overflow-hidden group cursor-pointer"
+                  onClick={() => setSelectedCard(domainCards[2])}
+                >
                   <CardContent className="p-0 h-full relative">
                     <img
                       className="absolute inset-0 w-full h-full object-contain opacity-90"
@@ -290,39 +294,50 @@ export const MobileDomain = (): JSX.Element => {
               </div>
             </div>
 
-            {/* Bottom card - EDITORIAL */}
-            <div className="w-full max-w-[200px] flex justify-center">
-              <div className="w-full">
-                <h3
-                  className="text-white text-base md:text-lg font-normal text-center mb-3"
-                  style={{ fontFamily: "Montserrat" }}
-                >
-                  {domainCards[3].title}
-                </h3>
-                <Card className="relative w-full h-48 md:h-52 bg-transparent border-none overflow-hidden group">
-                  <CardContent className="p-0 h-full relative">
-                    <img
-                      className="absolute inset-0 w-full h-full object-contain opacity-90"
-                      alt="Card frame"
-                      src={domainCards[3].rectangle}
-                    />
-                    <div className="absolute inset-0 flex items-center justify-center p-4">
-                      <img
-                        className="max-w-[70%] max-h-[70%] object-contain transition-transform duration-300 group-hover:scale-110"
-                        alt={domainCards[3].imageAlt}
-                        src={domainCards[3].image}
-                      />
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>
 
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black to-transparent" />
       
+      {/* Description Modal */}
+      {selectedCard && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4" 
+          onClick={() => setSelectedCard(null)}
+        >
+          <div 
+            className="relative w-full max-w-md bg-[#1a0800] border-2 border-[#ff5200] rounded-3xl p-6 md:p-8 flex flex-col items-center shadow-[0_0_30px_rgba(255,82,0,0.3)]" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+              onClick={() => setSelectedCard(null)}
+            >
+              <X className="w-6 h-6" />
+            </button>
+            <h2 
+              className="text-white text-2xl md:text-3xl font-batman mb-6 text-center" 
+              style={{ fontFamily: "'BatmanForeverAlternate', sans-serif" }}
+            >
+              {selectedCard.title}
+            </h2>
+            <img 
+              src={selectedCard.image} 
+              alt={selectedCard.imageAlt} 
+              className="h-32 object-contain mb-6 drop-shadow-[0_0_15px_rgba(255,82,0,0.5)]" 
+            />
+            <p 
+              className="text-gray-200 text-center text-sm md:text-base leading-relaxed" 
+              style={{ fontFamily: "Montserrat" }}
+            >
+              {selectedCard.description}
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Footer */}
       <Footerpage />
     </div>

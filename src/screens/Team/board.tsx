@@ -158,9 +158,9 @@ const Board: React.FC = () => {
           draggable="false"
         />
         {/* Centered frames row */}
-        <div className="flex flex-row items-start justify-center mt-20 gap-12">
+        <div className="flex flex-wrap md:flex-nowrap items-start justify-center mt-20 gap-6 md:gap-12 px-4 md:px-0 w-full">
           {/* Left frame and text */}
-          <div className="flex flex-col items-center mt-[25px]">
+          <div className="flex flex-col items-center mt-0 md:mt-[25px] w-[45%] md:w-auto order-2 md:order-1">
             <img
               src="/images/Shreyas B.png"
               alt="Frame Left"
@@ -175,7 +175,7 @@ const Board: React.FC = () => {
             </div>
           </div>
           {/* Center frame and text with photo */}
-          <div className="flex flex-col items-center relative">
+          <div className="flex flex-col items-center relative w-[80%] sm:w-[60%] md:w-auto order-1 md:order-2 mb-8 md:mb-0">
             {/* Orange shadow behind the frame towards the top */}
             <div
               className="absolute left-1/2 -translate-x-1/2 -top-20 w-[320px] h-[180px] z-0 pointer-events-none select-none"
@@ -198,7 +198,7 @@ const Board: React.FC = () => {
             <img
               src="/images/SHREY SHARMA.png"
               alt="Frame Center"
-              className="w-[300px] max-w-full h-auto relative z-20 mb-25"
+              className="w-[300px] max-w-full h-auto relative z-20"
               draggable="false"
             />
             <div className="mt-4 text-center relative z-20">
@@ -211,7 +211,7 @@ const Board: React.FC = () => {
             </div>
           </div>
           {/* Right frame and text */}
-          <div className="flex flex-col items-center mt-[25px]">
+          <div className="flex flex-col items-center mt-0 md:mt-[25px] w-[45%] md:w-auto order-3 md:order-3">
             <img
               src="/images/PRATYUSH SRIVASTAVA.png"
               alt="Frame Right"
@@ -230,13 +230,13 @@ const Board: React.FC = () => {
         <img
           src="/images/TheBoard.png"
           alt="The Board"
-          className="w-[320px] max-w-full h-auto mt-8"
+          className="w-[320px] max-w-full h-auto mt-2 md:mt-4"
           draggable="false"
         />
         {/* Frames row below TheBoard.png */}
-        <div className="flex flex-row items-start justify-center mt-8 gap-12">
+        <div className="flex flex-row items-start justify-center mt-8 gap-6 md:gap-12 px-4 md:px-0 w-full">
           {/* Far left frame and text */}
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center w-[45%] md:w-auto">
             <img
               src="/images/BRINDHA B.png"
               alt="Frame Far Left"
@@ -251,7 +251,7 @@ const Board: React.FC = () => {
             </div>
           </div>
           {/* Far right frame and text */}
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center w-[45%] md:w-auto">
             <img
               src="/images/Devashree Hote.png"
               alt="Frame Far Right"
@@ -267,7 +267,7 @@ const Board: React.FC = () => {
           </div>
         </div>
         {/* Heads and Associates sections */}
-        <div className="w-full flex flex-col items-center mt-16">
+        <div className="w-full flex flex-col items-center mt-8">
           <Heads />
           <Associates />
         </div>

@@ -3,7 +3,7 @@ import React from "react";
 const headsData = [
   { name: "Prisha Kushwaha", role: "AI-ML", image: "/images/Prisha Kushwaha_AIML_HEAD.png" },
   { name: "Yatindra Rai", role: "Web-Dev", image: "/images/YATINDRA RAI.png" },
-  { name: "Ishan Upponi", role: "Web-Dev", image: "/images/ISHAN.png" },
+  { name: "Ishaan Upponi", role: "Web-Dev", image: "/images/ISHAN.png" },
   { name: "Richelle Ranjan", role: "App-Dev", image: "/images/RICHELLE.png" },
   { name: "Dhwani Sharma", role: "Corporate", image: "/images/DHAWANI.png" },
   { name: "Aradhya Somani", role: "Corporate", image: "/images/ARADHYA.png" },
@@ -35,7 +35,7 @@ const Heads = () => {
           >
             {row.map((head, idx) => (
               <div key={idx} className="flex flex-col items-center">
-                <div 
+                <div
                   className="relative w-[150px] h-[180px] sm:w-[160px] sm:h-[200px] md:w-[180px] md:h-[220px] lg:w-[200px] lg:h-[240px] xl:w-[220px] xl:h-[260px] bg-[#ff6000] p-[3px]"
                   style={{ clipPath: clipPolygon }}
                 >

@@ -8,6 +8,7 @@ import { JoinUsButton } from "../../../components/JoinUsButton";
 export const Technical = (): JSX.Element => {
   const [active, setActive] = useState("Home");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState<any>(null);
   
   useEffect(() => {
     if (window.location.hash.includes("domains")) setActive("Domains");
@@ -30,18 +31,21 @@ export const Technical = (): JSX.Element => {
       image: "/Desktop-assets/phone1-1.png",
       imageAlt: "Phone",
       rectangle: "/Desktop-assets/rectangle-32.svg",
+      description: "Made the interactive games for the club events.",
     },
     {
       title: "AI/ML",
       image: "/Desktop-assets/newrobot-1.png",
       imageAlt: "Newrobot",
       rectangle: "/Desktop-assets/rectangle-5029.svg",
+      description: "Build the intelligent chatbot for the event and website.",
     },
     {
       title: "WEB-DEV",
       image: "/Desktop-assets/1laptop-1.png",
       imageAlt: "Element",
       rectangle: "/Desktop-assets/rectangle-5030.svg",
+      description: "Made the coding platform for the Campus Quest event and also makes the website for the club and its events.",
     },
   ];
 
@@ -275,7 +279,10 @@ export const Technical = (): JSX.Element => {
                   {card.title}
                 </h3>
 
-                <Card className="relative w-full h-48 md:h-44 lg:h-48 xl:h-52 bg-transparent border-none overflow-hidden group hover:scale-105 transition-all duration-300 cursor-pointer">
+                <Card 
+                  className="relative w-full h-48 md:h-44 lg:h-48 xl:h-52 bg-transparent border-none overflow-hidden group hover:scale-105 transition-all duration-300 cursor-pointer"
+                  onClick={() => setSelectedCard(card)}
+                >
                   <CardContent className="p-0 h-full relative">
                     {/* Background frame - Rectangle SVG */}
                     <img
@@ -309,6 +316,43 @@ export const Technical = (): JSX.Element => {
         </div>
       </div>
       
+      {/* Description Modal */}
+      {selectedCard && (
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4" 
+          onClick={() => setSelectedCard(null)}
+        >
+          <div 
+            className="relative w-full max-w-md bg-[#1a0800] border-2 border-[#ff5200] rounded-3xl p-6 md:p-8 flex flex-col items-center shadow-[0_0_30px_rgba(255,82,0,0.3)]" 
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button 
+              className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors"
+              onClick={() => setSelectedCard(null)}
+            >
+              <X className="w-6 h-6" />
+            </button>
+            <h2 
+              className="text-white text-2xl md:text-3xl font-batman mb-6 text-center" 
+              style={{ fontFamily: "'BatmanForeverAlternate', sans-serif" }}
+            >
+              {selectedCard.title}
+            </h2>
+            <img 
+              src={selectedCard.image} 
+              alt={selectedCard.imageAlt} 
+              className="h-32 object-contain mb-6 drop-shadow-[0_0_15px_rgba(255,82,0,0.5)]" 
+            />
+            <p 
+              className="text-gray-200 text-center text-sm md:text-base leading-relaxed" 
+              style={{ fontFamily: "Montserrat" }}
+            >
+              {selectedCard.description}
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Footer */}
       <Footerpage />
     </div>

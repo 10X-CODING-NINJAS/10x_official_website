@@ -6,20 +6,21 @@ const associatesData = [
   { name: "Priyanshu Goyal", role: "AI-ML", image: "/images/PRIYANSHU.png" },
   { name: "Rishabh Raj", role: "Web-Dev", image: "/images/RISHABH.png" },
   { name: "Sai Harshith Moluguri", role: "Web-Dev", image: "/images/HARSHITH.png" },
-  { name: "Jahanvi Singh", role: "Corporate", image: "/images/JAHANVI.png" },
+  { name: "Jahnavi Dave", role: "Corporate", image: "/images/JAHANVI.png" },
   { name: "Tiya Doshi", role: "Corporate", image: "/images/TIYA.png" },
   { name: "Shreya Sunil", role: "Corporate", image: "/images/SHREYA.png" },
   { name: "Darsh Ramoliya", role: "Corporate", image: "/images/DARSH.png" },
   { name: "Lojjan Mahendran", role: "Corporate", image: "/images/LOJJAN.png" },
   { name: "Nihan Sonkusare", role: "Corporate", image: "/images/NIHAN.png" },
   { name: "Varsha  M", role: "Creatives", image: "/images/VARSHA.png" },
-  { name: "Shrestha Vardhan", role: "Creatives", image: "/images/shrestha.png" },
-  { name: "Kushi", role: "Creatives", image: "/images/KUSHI.png" },
+  { name: "Shrestha Verdhan", role: "Creatives", image: "/images/shrestha.png" },
+  { name: "Khushi", role: "Creatives", image: "/images/KUSHI.png" },
   { name: "Aashita Soni", role: "Sponsorships", image: "/images/AASHITA.png" },
   { name: "Aditya Gupta", role: "Sponsorships", image: "/images/ADITYA.png" },
   { name: "Anishka Pradeep", role: "Sponsorships", image: "/images/ANSHIKA.png" },
   { name: "Harshit Kauntia", role: "Sponsorships", image: "/images/Harshit.png" },
 ];
+
 
 const imageUrl = "/images/vikrant.png.jpg"; // Default placeholder image
 const associatesHeadingUrl = "/images/Associates.png"; // Heading vector
@@ -48,7 +49,7 @@ const Associates = () => {
           >
             {row.map((associate, idx) => (
               <div key={idx} className="flex flex-col items-center">
-                <div 
+                <div
                   className="relative w-[150px] h-[180px] sm:w-[160px] sm:h-[200px] md:w-[180px] md:h-[220px] lg:w-[200px] lg:h-[240px] xl:w-[220px] xl:h-[260px] bg-[#ff6000] p-[3px]"
                   style={{ clipPath: clipPolygon }}
                 >
