@@ -33,7 +33,8 @@ const AboutPage: React.FC = () => {
               explore the world of technology and push our limits to create
               innovative solutions. Our club is designed to provide a platform
               for students to <strong>learn, share, and grow</strong> their
-              technical skills.
+              technical skills. We organize a variety of events throughout the
+              year, including Hackathons and Workshops.
             </p>
           </div>
         </div>
@@ -46,9 +47,7 @@ const AboutPage: React.FC = () => {
               technology can be a force for good in the world. That's why we
               encourage our members to use their skills to solve real-world
               problems and make a{" "}
-              <strong>positive impact on the society</strong>. We organize a
-              variety of events throughout the year, from Hackathons and
-              Workshops to amazing Gaming Events.
+              <strong>positive impact on the society</strong>.
             </p>
           </div>
           <div className="reveal order-1 lg:order-2 lg:text-right">
@@ -79,25 +78,25 @@ const AboutPage: React.FC = () => {
 
         {/* Group Photo */}
         <div className="reveal-up">
-          {/* <div className="relative w-full overflow-hidden" style={{ borderRadius: "4px" }}>
+          <div className="relative w-full overflow-hidden" style={{ borderRadius: "4px" }}>
             <img
-              src="./About/ImageGroup.png"
+              src="./About/Team.jpeg"
               alt="Coding Ninjas 10X Club SRM — community group photo"
               className="w-full h-auto object-cover"
               loading="lazy"
               style={{
                 border: "1px solid var(--border)",
               }}
-            /> */}
+            />
             {/* Subtle overlay gradient at bottom */}
-            {/* <div
+            <div
               className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none"
               style={{
                 background:
                   "linear-gradient(to top, var(--bg-primary), transparent)",
               }}
             />
-          </div> */}
+          </div>
           <p
             className="label-upper text-center mt-6"
             style={{ color: "var(--text-tertiary)" }}

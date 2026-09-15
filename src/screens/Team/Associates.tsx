@@ -6,7 +6,6 @@ const associatesData = [
   { name: "Archit Poonia", role: "AI-ML Associate", image: "/images/ARCHIT.png" },
   { name: "Rishabh Raj", role: "Web-Dev Associate", image: "/images/RISHABH.png" },
   { name: "Sai Harshith Moluguri", role: "Web-Dev Associate", image: "/images/HARSHITH.png" },
-  { name: "Richelle Ranjan", role: "App-Dev Associate", image: "/images/RICHELLE.png" },
   { name: "Darsh Ramoliya", role: "Corporate Associate", image: "/images/DARSH.png" },
   { name: "Jahnavi Singh", role: "Corporate Associate", image: "/images/JAHANVI.png" },
   { name: "Lojjan Mahendran", role: "Corporate Associate", image: "/images/LOJJAN.png" },

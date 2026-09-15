@@ -9,7 +9,7 @@ interface Event {
 }
 
 const events: Event[] = [
-  { id: 1, name: "CAMPUS QUEST 5.0", img: "./EventsPage/cq5.0.png" },
+  { id: 1, name: "CAMPUS QUEST 5.0", img: "./EventsPage/cq5.0.jpg" },
   { id: 2, name: "CAMPUS QUEST 4.0", img: "./EventsPage/cq4.0.png" },
   { id: 3, name: "CAMPUS QUEST 3.0", img: "./EventsPage/CQ3.0.png" },
   { id: 4, name: "CTRL ALT DELETE 3.0", img: "./EventsPage/cad3.0.png" },
@@ -87,7 +87,7 @@ const EventsSection: React.FC = () => {
           {/* Section Marker removed */}
 
           {/* Heading */}
-          <div className="reveal">
+          <div className="relative z-10">
             <h2
               className="heading-display"
               style={{ fontSize: "clamp(2rem, 5vw, 3.5rem)" }}

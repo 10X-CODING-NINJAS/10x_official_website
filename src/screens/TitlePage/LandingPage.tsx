@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export const LandingPage = (): JSX.Element => {
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
@@ -105,10 +106,9 @@ export const LandingPage = (): JSX.Element => {
             className={`reveal-up ${loaded ? "revealed" : ""}`}
             style={{ transitionDelay: "1s" }}
           >
-            <a
-              href="https://www.instagram.com/srm_cn/"
-              target="_blank"
-              rel="noopener noreferrer"
+
+            <Link
+              to="/join"
               className="btn-primary group relative overflow-hidden"
             >
               <span className="relative z-10 flex items-center">
@@ -129,7 +129,7 @@ export const LandingPage = (): JSX.Element => {
                   />
                 </svg>
               </span>
-            </a>
+            </Link>
           </div>
         </div>
 

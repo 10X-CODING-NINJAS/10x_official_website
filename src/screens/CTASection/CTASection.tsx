@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { useScrollReveal } from "../../hooks/useScrollReveal";
 import { TextReveal } from "../../components/TextReveal";
 
@@ -49,10 +50,8 @@ const CTASection: React.FC = () => {
 
         {/* CTA Button */}
         <div className="reveal-up" style={{ transitionDelay: "0.9s" }}>
-          <a
-            href="https://www.instagram.com/srm_cn/"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/join"
             className="btn-primary group relative overflow-hidden text-base px-8 py-4"
           >
             <span className="relative z-10 flex items-center">
@@ -73,7 +72,7 @@ const CTASection: React.FC = () => {
                 />
               </svg>
             </span>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

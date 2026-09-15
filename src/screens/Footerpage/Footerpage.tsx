@@ -10,10 +10,10 @@ export const Footerpage = (): JSX.Element => {
     { label: "Team", href: "/board" },
   ];
 
-  const domainsList = [
-    { col1: ["Corporate", "Creatives", "Sponsorship"] },
-    { col2: ["AI/ML", "Web Dev", "App Dev"] },
-  ];
+  const domainsList = {
+    col1: ["Corporate", "Creatives", "Sponsorship"],
+    col2: ["AI/ML", "Web Dev", "App Dev"],
+  };
 
   return (
     <footer
@@ -89,7 +89,7 @@ export const Footerpage = (): JSX.Element => {
             </h3>
             <div className="flex gap-8">
               <div className="flex flex-col gap-1.5">
-                {domainsList[0].col1.map((d) => (
+                {domainsList.col1.map((d) => (
                   <span
                     key={d}
                     className="font-montserrat text-sm"
@@ -100,7 +100,7 @@ export const Footerpage = (): JSX.Element => {
                 ))}
               </div>
               <div className="flex flex-col gap-1.5">
-                {domainsList[1].col2.map((d) => (
+                {domainsList.col2.map((d) => (
                   <span
                     key={d}
                     className="font-montserrat text-sm"

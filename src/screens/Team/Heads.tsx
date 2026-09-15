@@ -8,6 +8,7 @@ const headsData = [
   { name: "Aradhya Somani", role: "Corporate Head", image: "/images/ARADHYA.png" },
   { name: "Garima Gupta", role: "Creative Head", image: "/images/GARIMA GUPTA.png" },
   { name: "Krish Ved Duggal", role: "Sponsorship Head", image: "/images/Krishved_Sponsorship_Head.png" },
+  { name: "Richelle Ranjan", role: "App-Dev Head", image: "/images/RICHELLE.png" },
 ];
 
 const Heads = () => {
