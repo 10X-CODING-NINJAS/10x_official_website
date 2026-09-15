@@ -3,7 +3,7 @@ import React from "react";
 const associatesData = [
   { name: "Hiteshvenu", role: "AI-ML Associate", image: "/images/HITESHVENU.png" },
   { name: "Priyanshu Goyal", role: "AI-ML Associate", image: "/images/PRIYANSHU.png" },
-  { name: "Archit Poonia", role: "AI-ML Associate", image: "/images/ARCHIT.png" },
+  { name: "Archit Poonia", role: "AI-ML Associate", image: "/images/Archit_Poonia.png" },
   { name: "Rishabh Raj", role: "Web-Dev Associate", image: "/images/RISHABH.png" },
   { name: "Sai Harshith Moluguri", role: "Web-Dev Associate", image: "/images/HARSHITH.png" },
   { name: "Darsh Ramoliya", role: "Corporate Associate", image: "/images/DARSH.png" },
