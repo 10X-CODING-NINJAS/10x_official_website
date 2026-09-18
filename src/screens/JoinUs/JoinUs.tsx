@@ -48,11 +48,14 @@ const JoinUs: React.FC = () => {
       <div className="max-w-[1200px] w-full flex-1 flex flex-col" ref={revealRef}>
         
         {/* Header Section */}
-        <div className="mb-12 text-center reveal-up">
+        <div className="mb-12 text-center reveal-up flex flex-col items-center">
           <h1 className="heading-display mb-4" style={{ fontSize: "clamp(2.5rem, 6vw, 5rem)" }}>
             <span className="text-[var(--text-primary)]">CHOOSE YOUR </span>
             <span style={{ color: "var(--accent)" }}>DOMAIN.</span>
           </h1>
+          <p className="text-[var(--accent)] text-sm sm:text-base font-semibold tracking-wider uppercase mb-3">
+            You can fill the form for any 2 domains of your choice!!
+          </p>
           <p className="body-text max-w-2xl mx-auto text-[1.1rem]">
             Applications are now open. Select a domain below to apply and become part of the 10X legacy.
           </p>
