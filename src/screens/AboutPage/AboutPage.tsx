@@ -145,7 +145,7 @@ const AboutPage: React.FC = () => {
                 >
                   Dr. Iniyan S
                   <br />
-                  Associate Professor
+                  Assistant Professor
                   <br />
                   Department of Computing Technologies
                 </p>
@@ -177,7 +177,7 @@ const AboutPage: React.FC = () => {
                 >
                   Dr. Senthil Raja M
                   <br />
-                  Associate Professor
+                  Assistant Professor
                   <br />
                   Department of Computing Technologies
                 </p>
