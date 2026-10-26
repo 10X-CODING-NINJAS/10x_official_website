@@ -104,6 +104,87 @@ const AboutPage: React.FC = () => {
             THE 10X COMMUNITY
           </p>
         </div>
+
+        {/* Divider */}
+        <div className="divider reveal mt-16 mb-12" />
+
+        {/* Esteemed Faculty */}
+        <div style={{ maxWidth: "65%", margin: "0 auto" }}>
+          <div className="reveal text-center mb-10">
+            <h2
+              className="heading-display mx-auto"
+              style={{ fontSize: "clamp(2rem, 5vw, 4rem)" }}
+            >
+              <TextReveal text="FACULTY COORDINATORS" delay={0.1} />
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 lg:gap-12 reveal-up reveal-delay-1">
+            {/* Dr. Iniyan S */}
+            <div className="flex flex-col items-center">
+              <div
+                style={{
+                  background: "#111",
+                  border: "2px solid #c0392b",
+                  borderRadius: "16px",
+                  boxShadow: "0 0 18px 4px rgba(192, 57, 43, 0.55), inset 0 0 12px rgba(192, 57, 43, 0.12)",
+                  padding: "16px",
+                  width: "100%",
+                }}
+              >
+                <img
+                  src="./images/Dr. Iniyan S.jpg"
+                  alt="Dr. Iniyan S"
+                  className="w-full object-cover"
+                  loading="lazy"
+                  style={{ borderRadius: "12px", maxHeight: "340px" }}
+                />
+                <p
+                  className="label-upper text-center mt-4"
+                  style={{ color: "#fff", letterSpacing: "0.05em" }}
+                >
+                  Dr. Iniyan S
+                  <br />
+                  Associate Professor
+                  <br />
+                  Department of Computing Technologies
+                </p>
+              </div>
+            </div>
+
+            {/* Dr. Senthil Raja M */}
+            <div className="flex flex-col items-center">
+              <div
+                style={{
+                  background: "#111",
+                  border: "2px solid #c0392b",
+                  borderRadius: "16px",
+                  boxShadow: "0 0 18px 4px rgba(192, 57, 43, 0.55), inset 0 0 12px rgba(192, 57, 43, 0.12)",
+                  padding: "16px",
+                  width: "100%",
+                }}
+              >
+                <img
+                  src="./images/Dr. Senthil Raja M.jpg"
+                  alt="Dr. Senthil Raja M"
+                  className="w-full object-cover"
+                  loading="lazy"
+                  style={{ borderRadius: "12px", maxHeight: "340px" }}
+                />
+                <p
+                  className="label-upper text-center mt-4"
+                  style={{ color: "#fff", letterSpacing: "0.05em" }}
+                >
+                  Dr. Senthil Raja M
+                  <br />
+                  Associate Professor
+                  <br />
+                  Department of Computing Technologies
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
