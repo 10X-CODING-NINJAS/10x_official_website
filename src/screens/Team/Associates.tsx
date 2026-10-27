@@ -1,6 +1,13 @@
+
 import React from "react";
 
-const associatesData = [
+interface Associate {
+  name: string;
+  role: string;
+  image: string;
+}
+
+const associatesData: Associate[] = [
   { name: "Hiteshvenu", role: "AI-ML Associate", image: "/images/HITESHVENU.png" },
   { name: "Priyanshu Goyal", role: "AI-ML Associate", image: "/images/PRIYANSHU.png" },
   { name: "Archit Poonia", role: "AI-ML Associate", image: "/images/Archit_Poonia.png" },
@@ -14,7 +21,6 @@ const associatesData = [
   { name: "Khushi", role: "Creative Associate", image: "/images/KUSHI.png" },
   { name: "Varsha M", role: "Creative Associate", image: "/images/VARSHA.png" },
   { name: "Harshit Kauntia", role: "Sponsorship Associate", image: "/images/Harshit.png" },
-  { name: "Aashita Soni", role: "Sponsorship Associate", image: "/images/AASHITA.png" },
   { name: "Anishka Pradeep", role: "Sponsorship Associate", image: "/images/ANSHIKA.png" },
   { name: "Aditya Gupta", role: "Sponsorship Associate", image: "/images/ADITYA.png" },
 ];
@@ -27,20 +33,25 @@ const Associates = () => {
         alt="Associates"
         className="mb-6 sm:mb-8 md:mb-10 w-[180px] sm:w-[200px] md:w-[240px] lg:w-[280px] xl:w-[320px] object-contain"
       />
+
       <div className="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-10 mb-6 sm:mb-8 w-full max-w-6xl">
-        {associatesData.map((associate, idx) => (
-          <div key={idx} className="flex flex-col items-center w-[150px] sm:w-[180px] md:w-[200px]">
+        {associatesData.map((associate) => (
+          <div
+            key={associate.name}
+            className="flex flex-col items-center w-[150px] sm:w-[180px] md:w-[200px]"
+          >
             <img
               src={associate.image}
               alt={associate.name}
               className="w-full h-auto object-contain"
-              draggable="false"
+              draggable={false}
             />
+
             <div className="mt-3 text-center">
               <span className="block text-white text-base md:text-lg font-semibold leading-tight">
                 {associate.name}
               </span>
-              <span className="text-gray-300 text-xs italic mt-1">
+              <span className="block text-gray-300 text-xs italic mt-1">
                 {associate.role}
               </span>
             </div>
