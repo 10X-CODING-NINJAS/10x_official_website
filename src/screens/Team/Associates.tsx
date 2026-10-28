@@ -21,6 +21,7 @@ const associatesData: Associate[] = [
   { name: "Nihan", role: "Corporate Associate", image: "/images/NIHAN.png" },
   { name: "Khushi", role: "Creative Associate", image: "/images/KUSHI.png" },
   { name: "Varsha M", role: "Creative Associate", image: "/images/VARSHA.png" },
+  { name: "Shrestha Verdhan", role: "Creative Associate", image: "/images/shrestha.png" },
   { name: "Harshit Kauntia", role: "Sponsorship Associate", image: "/images/Harshit.png" },
   { name: "Anishka Pradeep", role: "Sponsorship Associate", image: "/images/ANSHIKA.png" },
   { name: "Aditya Gupta", role: "Sponsorship Associate", image: "/images/ADITYA.png" },
